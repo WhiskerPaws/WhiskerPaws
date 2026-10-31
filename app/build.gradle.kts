@@ -30,17 +30,17 @@ android {
     }
 }
 
+repositories {
+    google()
+    mavenCentral()
+}
+
 dependencies {
-    // Standard UI and Layout components
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.cardview:cardview:1.0.0")
-    
-    // Secure Browser Custom Tabs Linker Engine
     implementation("androidx.browser:browser:1.6.0")
-    
-    // AdMob Ads Monetization SDK
     implementation("com.google.android.gms:play-services-ads:22.4.0")
 }
