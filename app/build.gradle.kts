@@ -30,10 +30,7 @@ android {
     }
 }
 
-repositories {
-    google()
-    mavenCentral()
-}
+// 👈 THE REPOSITORIES BLOCK WAS REMOVED FROM HERE TO ALLOW ROOT SETTINGS TO GOVERN REPOS
 
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
