@@ -1,10 +1,11 @@
 package com.whiskerpaws.app
 
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
+import android.widget.Button
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
@@ -18,57 +19,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1. MONETIZATION LAYER: Initialize AdMob Mobile Ads Engine
+        // Initialize Ads
         MobileAds.initialize(this) {}
-
-        // Bind and load a fresh persistent test banner into the layout base
         val adContainer = findViewById<FrameLayout>(R.id.admobBannerContainer)
         adView = AdView(this).apply {
-            adUnitId = "ca-app-pub-3940256099942544/6300978111" // Standard AdMob testing banner ID
+            adUnitId = "ca-app-pub-3940256099942544/6300978111"
             setAdSize(AdSize.BANNER)
         }
         adContainer.addView(adView)
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
+        adView.loadAd(AdRequest.Builder().build())
 
-        // 2. ROUTING LAYER: Setup Card Action Click Event Listeners
-        val cardAIHub = findViewById<CardView>(R.id.cardAIHub)
-        val cardFastFood = findViewById<CardView>(R.id.cardFastFood)
-        val cardOnlineShopping = findViewById<CardView>(R.id.cardOnlineShopping)
+        // Setup Portal Routing Hooks
+        linkButton(R.id.btnChatGPT, "https://chatgpt.com")
+        linkButton(R.id.btnGemini, "https://google.com")
+        linkButton(R.id.btnClaude, "https://claude.ai")
+        linkButton(R.id.btnJollibee, "https://jollibeedelivery.com")
+        linkButton(R.id.btnMcDo, "https://mcdelivery.com.ph")
+        linkButton(R.id.btnFoodpanda, "https://foodpanda.ph")
+        linkButton(R.id.btnLazada, "https://lazada.com.ph")
+        linkButton(R.id.btnShopee, "https://shopee.ph")
+    }
 
-        // Redirect clicks to CategoryActivity, passing along the chosen group bundle token
-        cardAIHub.setOnClickListener {
-            launchCategoryWindow("AI_HUB")
+    private fun linkButton(buttonId: Int, targetUrl: String) {
+        findViewById<Button>(buttonId).setOnClickListener {
+            val customTabsIntent = CustomTabsIntent.Builder().apply {
+                setShowTitle(true)
+                setInstantAppsEnabled(true)
+            }.build()
+            customTabsIntent.launchUrl(this, Uri.parse(targetUrl))
         }
-
-        cardFastFood.setOnClickListener {
-            launchCategoryWindow("FAST_FOOD")
-        }
-
-        cardOnlineShopping.setOnClickListener {
-            launchCategoryWindow("ONLINE_SHOPPING")
-        }
     }
 
-    private fun launchCategoryWindow(categoryToken: String) {
-        val intent = Intent(this, CategoryActivity::class.java).apply {
-            putExtra("SELECTED_CATEGORY", categoryToken)
-        }
-        startActivity(intent)
-    }
-
-    override fun onPause() {
-        adView.pause()
-        super.onPause()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        adView.resume()
-    }
-
-    override fun onDestroy() {
-        adView.destroy()
-        super.onDestroy()
-    }
+    override fun onPause() { adView.pause(); super.onPause() }
+    override fun onResume() { super.onResume(); adView.resume() }
+    override fun onDestroy() { adView.destroy(); super.onDestroy() }
 }

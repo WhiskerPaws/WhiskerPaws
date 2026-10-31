@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://android.com">
 
-    <!-- 1. PERMISSIONS LAYER: Secure internet capabilities for loading portals and ads -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -13,13 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <!-- 2. ADS MONETIZATION ENGINE: Global Google AdMob App Registration -->
-        <!-- This utilizes the official safe Google AdMob sample app runtime ID -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
 
-        <!-- 3. MAIN DASHBOARD ACTIVITY: The application launch pad panel entry point -->
         <activity
             android:name="com.whiskerpaws.app.MainActivity"
             android:exported="true"
@@ -30,13 +26,5 @@
             </intent-filter>
         </activity>
 
-        <!-- 4. SEPARATE WINDOW ACTIVITY: The individual category popup list controller -->
-        <activity
-            android:name="com.whiskerpaws.app.CategoryActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:parentActivityName="com.whiskerpaws.app.MainActivity" />
-
     </application>
-
 </manifest>

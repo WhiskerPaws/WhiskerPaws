@@ -5,156 +5,170 @@
     android:layout_height="match_parent"
     android:background="#F8FAFC">
 
-    <!-- 1. TOP LAYER: Warm Pinoy Hospitality & Appreciation Header -->
+    <!-- Header Greeting -->
     <LinearLayout
-        android:id="@+id/greetingContainer"
+        android:id="@+id/headerBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
         android:background="#FFFFFF"
         android:elevation="2dp">
-
         <TextView
-            android:id="@+id/textWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/welcome_headline"
             android:textColor="#1E293B"
             android:textSize="18sp"
             android:textStyle="bold" />
-
         <TextView
-            android:id="@+id/textAppreciation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:text="@string/appreciation_subline"
             android:textColor="#64748B"
-            android:textSize="14sp"
-            android:lineSpacingMultiplier="1.2" />
+            android:textSize="13sp" />
     </LinearLayout>
 
-    <!-- 2. MIDDLE LAYER: Scrollable Category Portals Container -->
+    <!-- Scrollable Portal Dashboard -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/headerBox"
         android:layout_above="@+id/admobBannerContainer"
-        android:layout_below="@+id/greetingContainer"
-        android:padding="16dp"
-        android:scrollbars="none">
+        android:padding="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Card A: Artificial Intelligence Hub -->
+            <!-- Category 1: AI Hub -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardAIHub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
-                
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
-                    
+                    android:padding="14dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/category_ai_title"
+                        android:text="🤖 ARTIFICIAL INTELLIGENCE HUB"
                         android:textColor="#2563EB"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+                    <Button
+                        android:id="@+id/btnChatGPT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="🚀 Launch ChatGPT"
+                        android:backgroundTint="#2563EB" />
+                    <Button
+                        android:id="@+id/btnGemini"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="@string/category_ai_desc"
-                        android:textColor="#64748B"
-                        android:textSize="13sp"/>
+                        android:text="✨ Launch Google Gemini"
+                        android:backgroundTint="#2563EB" />
+                    <Button
+                        android:id="@+id/btnClaude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="🧠 Launch Claude AI"
+                        android:backgroundTint="#2563EB" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Card B: Fast Food & Delivery Panel -->
+            <!-- Category 2: Food Portals -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardFastFood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
-                
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
-                    
+                    android:padding="14dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/category_food_title"
-                        android:textColor="#2563EB"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:text="🍔 FOOD DELIVERY PLACES"
+                        android:textColor="#EA580C"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+                    <Button
+                        android:id="@+id/btnJollibee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="🐝 Jollibee Food Delivery"
+                        android:backgroundTint="#EA580C" />
+                    <Button
+                        android:id="@+id/btnMcDo"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="@string/category_food_desc"
-                        android:textColor="#64748B"
-                        android:textSize="13sp"/>
+                        android:text="🍔 McDonald's McDelivery"
+                        android:backgroundTint="#EA580C" />
+                    <Button
+                        android:id="@+id/btnFoodpanda"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="🐼 Foodpanda Portal"
+                        android:backgroundTint="#EA580C" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Card C: Online Shopping Network -->
+            <!-- Category 3: Online Shopping -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardOnlineShopping"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
-                
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
-                    
+                    android:padding="14dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/category_shopping_title"
-                        android:textColor="#2563EB"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:text="🛍️ ONLINE SHOPPING NETWORK"
+                        android:textColor="#DB2777"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+                    <Button
+                        android:id="@+id/btnLazada"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="🧡 Lazada Philippines"
+                        android:backgroundTint="#DB2777" />
+                    <Button
+                        android:id="@+id/btnShopee"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="@string/category_shopping_desc"
-                        android:textColor="#64748B"
-                        android:textSize="13sp"/>
+                        android:text="❤️ Shopee PH Shopping"
+                        android:backgroundTint="#DB2777" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- 3. BOTTOM LAYER: Fixed AdMob Anchor Banner Space -->
+    <!-- AdMob Footer Anchor Space -->
     <FrameLayout
         android:id="@+id/admobBannerContainer"
         android:layout_width="match_parent"
