@@ -30,17 +30,19 @@ android {
     }
 }
 
+// 👈 THIS FORCEFULLY OVERRIDES BACKGROUND MODULE VERSION MISMATCHES
+configurations.all {
+    resolutionStrategy {
+        force("com.google.android.gms:play-services-ads:23.0.0")
+    }
+}
+
 dependencies {
-    // Upgraded standard core dependencies to prevent library mismatches
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.cardview:cardview:1.0.0")
-    
-    // Secure Browser Custom Tabs Linker Engine
     implementation("androidx.browser:browser:1.6.0")
-    
-    // Upgraded AdMob SDK to a robust version that cleanly fixes background conflicts
     implementation("com.google.android.gms:play-services-ads:23.0.0")
 }
