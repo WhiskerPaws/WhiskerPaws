@@ -28,13 +28,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    // 👈 THIS ADDS THE MISSING LAYOUT CONTROLLER EXTENSION ENGINE REQUIRED FOR APP COMPILATION
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
+    // Standard UI and Layout components
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
