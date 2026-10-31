@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://android.com"
+    xmlns:app="http://android.com"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8FAFC">
+
+    <!-- 1. TOP LAYER: Action Header Bar with Back Navigation -->
+    <LinearLayout
+        android:id="@+id/categoryHeaderBar"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp">
+
+        <ImageButton
+            android:id="@+id/buttonBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Go Back"
+            android:src="@android:drawable/ic_menu_revert"
+            android:tint="#1E293B" />
+
+        <TextView
+            android:id="@+id/textCategoryHeaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Category Options"
+            android:textColor="#1E293B"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textPromptLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/categoryHeaderBar"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/action_select_prompt"
+        android:textColor="#64748B"
+        android:textSize="14sp" />
+
+    <!-- 2. MIDDLE LAYER: Grid View Panel for Individual Merchant Logos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMerchants"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/categoryAdmobBanner"
+        android:layout_below="@id/textPromptLabel"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:padding="12dp"
+        android:scrollbars="vertical" />
+
+    <!-- 3. BOTTOM LAYER: Fixed AdMob Anchor Banner Space for Separate Window -->
+    <FrameLayout
+        android:id="@+id/categoryAdmobBanner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#F1F5F9" />
+
+</RelativeLayout>
