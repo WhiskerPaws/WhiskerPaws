@@ -21,11 +21,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # Version-locked to 8.0 to eliminate internal library collisions entirely
-    - name: Setup Gradle Build Environment
+    - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
-      with:
-        gradle-version: 8.0
 
     - name: Build Debug Test APK
       run: gradle assembleDebug
