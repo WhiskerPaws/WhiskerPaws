@@ -7,7 +7,7 @@ import java.util.Date
 import java.util.Locale
 
 class RewardManager(context: Context) {
-    private val prefs: SharedPreferences = context.getSharedPreferences("MoneyPawsRewards", Context.MODE_PRIVATE)
+    private val prefs: SharedPreferences = context.getSharedPreferences("WhiskerPawsRewards", Context.MODE_PRIVATE)
 
     fun getBalance(): Int = prefs.getInt("PAWCOINS_BALANCE", 0)
 
