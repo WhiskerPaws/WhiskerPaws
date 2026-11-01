@@ -9,12 +9,7 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+// 👈 THE ALLPROJECTS BLOCK WAS REMOVED FROM HERE TO SATISFY SETTINGS REQUIREMENTS
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
