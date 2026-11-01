@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://android.com"
+    xmlns:ads="http://android.com"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6F8">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/admobBannerContainer"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Live Balance Display Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#FFFFFF"
+                android:padding="16dp"
+                android:layout_marginBottom="20dp"
+                android:elevation="2dp"
+                android:gravity="center_vertical">
+                
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MoneyPaws Hub"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="#111111"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Everyday Multi-Utility Linker"
+                        android:textSize="12sp"
+                        android:textColor="#666666"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtCoinBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🪙 0"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFB300"
+                    android:background="#FFF9C4"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"/>
+            </LinearLayout>
+
+            <!-- SECTION: ADVANCED AI WORKSPACE -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🤖 Multi-Model AI Engine"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#444444"
+                android:layout_marginBottom="8dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginBottom="20dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button android:id="@+id/btnChatGPT" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ChatGPT" android:layout_marginEnd="8dp" android:backgroundTint="#10A37F" android:textColor="#FFFFFF"/>
+                    <Button android:id="@+id/btnGemini" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Gemini" android:layout_marginEnd="8dp" android:backgroundTint="#1A73E8" android:textColor="#FFFFFF"/>
+                    <Button android:id="@+id/btnClaude" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Claude AI" android:layout_marginEnd="8dp" android:backgroundTint="#D97706" android:textColor="#FFFFFF"/>
+                    <Button android:id="@+id/btnGrok" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Grok" android:layout_marginEnd="8dp" android:backgroundTint="#000000" android:textColor="#FFFFFF"/>
+                    <Button android:id="@+id/btnPerplexity" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Perplexity" android:backgroundTint="#22D3EE" android:textColor="#111111"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- SECTION: CORE UTILITY UTILITIES & PORTALS -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🧩 Utility Core &amp; Hubs"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#444444"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button android:id="@+id/btnSocial" android:layout_width="match_parent" android:layout_height="60dp" android:text="💬 Social &amp; Messaging Networks" android:gravity="start|center_vertical" android:paddingStart="16dp" android:layout_marginBottom="12dp" android:textColor="#222222" android:backgroundTint="#FFFFFF"/>
+                <Button android:id="@+id/btnGovernment" android:layout_width="match_parent" android:layout_height="60dp" android:text="🏛️ News, Business &amp; Government" android:gravity="start|center_vertical" android:paddingStart="16dp" android:layout_marginBottom="12dp" android:textColor="#222222" android:backgroundTint="#FFFFFF"/>
+                <Button android:id="@+id/btnShopping" android:layout_width="match_parent" android:layout_height="60dp" android:text="🛍️ Online Shopping Marketplace" android:gravity="start|center_vertical" android:paddingStart="16dp" android:layout_marginBottom="12dp" android:textColor="#222222" android:backgroundTint="#FFFFFF"/>
+                <Button android:id="@+id/btnEntertainment" android:layout_width="match_parent" android:layout_height="60dp" android:text="🎬 Entertainment &amp; Short Dramas" android:gravity="start|center_vertical" android:paddingStart="16dp" android:layout_marginBottom="12dp" android:textColor="#222222" android:backgroundTint="#FFFFFF"/>
+                <Button android:id="@+id/btnHealth" android:layout_width="match_parent" android:layout_height="60dp" android:text="🩺 Health &amp; Wellness Resources" android:gravity="start|center_vertical" android:paddingStart="16dp" android:layout_marginBottom="12dp" android:textColor="#222222" android:backgroundTint="#FFFFFF"/>
+                <Button android:id="@+id/btnFinance" android:layout_width="match_parent" android:layout_height="60dp" android:text="💰 Wealth, Crypto &amp; Financials" android:gravity="start|center_vertical" android:paddingStart="16dp" android:layout_marginBottom="12dp" android:textColor="#222222" android:backgroundTint="#FFFFFF"/>
+                <Button android:id="@+id/btnUtilities" android:layout_width="match_parent" android:layout_height="60dp" android:text="⚡ Household Utilities &amp; Bills" android:gravity="start|center_vertical" android:paddingStart="16dp" android:layout_marginBottom="12dp" android:textColor="#222222" android:backgroundTint="#FFFFFF"/>
+                <Button android:id="@+id/btnTransportation" android:layout_width="match_parent" android:layout_height="60dp" android:text="🚗 Transportation &amp; Logistics" android:gravity="start|center_vertical" android:paddingStart="16dp" android:layout_marginBottom="12dp" android:textColor="#222222" android:backgroundTint="#FFFFFF"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- INJECTED ADMOB BOTTOM BANNER CONTAINER -->
+    <LinearLayout
+        android:id="@+id/admobBannerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#EEEEEE"
+        android:gravity="center"
+        android:orientation="vertical" />
+
+</RelativeLayout>
