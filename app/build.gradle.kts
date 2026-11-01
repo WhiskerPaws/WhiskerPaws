@@ -28,12 +28,21 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    // 👈 THIS ENABLES THE PURE JETPACK COMPOSE COMPILER RUNTIME
     buildFeatures {
         compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.7"
+    }
+}
+
+// 👈 THIS FORCEFULLY STOPS THE WORK-RUNTIME / ROOM ROADBLOCKS IN LINES 90-93
+configurations.all {
+    resolutionStrategy {
+        force("androidx.work:work-runtime:2.9.0")
+        force("androidx.work:work-runtime-ktx:2.9.0")
+        force("androidx.room:room-runtime:2.6.1")
+        force("androidx.sqlite:sqlite-framework:2.4.0")
     }
 }
 
@@ -47,9 +56,9 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.1.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.4.3")
     
-    // Secure Browser Custom Tabs Linker Engine
+    // Linker Engine Browser Tabs
     implementation("androidx.browser:browser:1.6.0")
     
-    // Version-Locked AdMob Monetization SDK
+    // Monetization Engine
     implementation("com.google.android.gms:play-services-ads:23.0.0")
 }
