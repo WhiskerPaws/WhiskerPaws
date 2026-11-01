@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- App Brand Settings -->
-    <string name="app_name">WhiskerPaws</string>
-
-    <!-- Warm Hospitality Onboarding & Retention Greetings -->
-    <string name="welcome_headline">Mabuhay! Welcome back to WhiskerPaws. 🐾</string>
-    <string name="appreciation_subline">Thank you so much for opening our hub and choosing to stay here with us today! Tap a portal panel below to explore your favorite tools without leaving the dashboard.</string>
-
-    <!-- Primary Categories -->
-    <string name="category_ai_title">🤖 Artificial Intelligence Hub</string>
-    <string name="category_ai_desc">Access ChatGPT, Gemini, Claude, and Grok instantly inside the dashboard.</string>
-    
-    <string name="category_food_title">🍔 Fast Food & Delivery Panel</string>
-    <string name="category_food_desc">Check Jollibee, McDonald\'s, Foodpanda, and Grab without switching spaces.</string>
-    
-    <string name="category_shopping_title">🛍️ Online Shopping Network</string>
-    <string name="category_shopping_desc">Browse Lazada, Shopee, and TikTok Shop securely inside the app wrapper.</string>
-
-    <!-- Separate Window Elements -->
-    <string name="action_select_prompt">Select an official portal to launch safely:</string>
-    <string name="text_redirecting">Opening link securely within WhiskerPaws...</string>
+    <!-- Official Title for your Every-Day Multi-Utility Linker -->
+    <string name="app_name">MoneyPaws Hub</string>
 </resources>

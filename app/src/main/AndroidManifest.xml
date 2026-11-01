@@ -14,7 +14,6 @@
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         android:usesCleartextTraffic="true">
 
-        <!-- Sample AdMob App ID required for initialization to prevent startup crashes -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
@@ -32,6 +31,11 @@
             android:name=".AppWebViewActivity"
             android:exported="false"
             android:label="Portal View" />
+
+        <activity
+            android:name=".PayoutStatusActivity"
+            android:exported="false"
+            android:label="Payout Ledger" />
 
     </application>
 </manifest>
