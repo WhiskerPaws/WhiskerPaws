@@ -18,24 +18,16 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
 
-        <activity
-            android:name=".MainDashboardActivity"
-            android:exported="true">
+        <activity android:name=".MainDashboardActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".AppWebViewActivity"
-            android:exported="false"
-            android:label="Portal View" />
-
-        <activity
-            android:name=".PayoutStatusActivity"
-            android:exported="false"
-            android:label="Payout Ledger" />
+        <activity android:name=".AppWebViewActivity" android:exported="false" android:label="Portal View" />
+        <activity android:name=".PayoutStatusActivity" android:exported="false" android:label="Payout Ledger" />
+        <activity android:name=".JobBoardActivity" android:exported="false" android:label="Job Openings" />
 
     </application>
 </manifest>
