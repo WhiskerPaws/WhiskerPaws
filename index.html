@@ -1,213 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>WhiskerPaws Hub</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            background-color: #f7fafc;
-            color: #1a202c;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        /* App Header Container */
-        .app-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-            padding-top: 4px;
-        }
-        .logo-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: #2d3748;
-            letter-spacing: -0.5px;
-        }
-        .currency-badge {
-            background-color: #edf2f7;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 15px;
-            font-weight: 700;
-            color: #4a5568;
-            border: 1px solid #e2e8f0;
-        }
-        .subtitle {
-            font-size: 14px;
-            color: #718096;
-            margin-bottom: 20px;
-        }
-        /* Video Reward Action Module */
-        .reward-card {
-            background: linear-gradient(135deg, #ffffff 0%, #fcfdfd 100%);
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 18px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
-        }
-        .reward-card p {
-            font-size: 14px;
-            color: #4a5568;
-            line-height: 1.4;
-        }
-        .reward-btn {
-            display: inline-block;
-            background-color: #3182ce;
-            color: white;
-            text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            margin-top: 12px;
-            text-align: center;
-            transition: background-color 0.2s;
-        }
-        .reward-btn:active {
-            background-color: #2b6cb0;
-        }
-        /* Top Ad Placement Frame */
-        .ad-banner {
-            background-color: #edf2f7;
-            border: 1px dashed #cbd5e0;
-            color: #718096;
-            text-align: center;
-            padding: 14px 10px;
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 10px;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        /* Dashboard Categories Header */
-        .section-label {
-            font-size: 16px;
-            font-weight: 800;
-            color: #2d3748;
-            margin-bottom: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        /* Perfectly Grid Architecture */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-        .category-tile {
-            background-color: #ffffff;
-            border-radius: 14px;
-            padding: 24px 16px;
-            text-align: center;
-            text-decoration: none;
-            color: #2d3748;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03), 0 2px 4px -1px rgba(0,0,0,0.02);
-            border: 1px solid #edf2f7;
-            transition: transform 0.15s ease, background-color 0.15s ease;
-        }
-        /* Native App Touch Feedback Feel */
-        .category-tile:active {
-            transform: scale(0.96);
-            background-color: #f7fafc;
-        }
-        .tile-icon {
-            font-size: 36px;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .tile-name {
-            font-weight: 700;
-            font-size: 15px;
-            display: block;
-        }
-        /* Clean Fixed Footer Label */
-        .footer-note {
-            text-align: center;
-            font-size: 11px;
-            color: #a0aec0;
-            margin-top: auto;
-            padding-top: 24px;
-            line-height: 1.4;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Main Live App Bar Header -->
-    <header class="app-header">
-        <div class="logo-title">🐾 Whisker Paws</div>
-        <div class="currency-badge">🐟 0 paws</div>
-    </header>
-
-    <div class="subtitle">Everything you use, one tap away.</div>
-
-    <!-- Incentivized Video Component Container -->
-    <div class="reward-card">
-        <p><strong>Watch a short video</strong><br>Earn 50 paws, redeem for rewards & vouchers.</p>
-        <a href="#" class="reward-btn" onclick="triggerAdVideo(); return false;">▶ Watch Video</a>
-    </div>
-
-    <!-- Top Native Ad Placeholder Frame -->
-    <div class="ad-banner">
-        AdMob banner sits here on the home screen
-    </div>
-
-    <!-- Categorized Touch Grid Layout Links -->
-    <div class="section-label">All Categories</div>
-    <div class="categories-grid">
-        
-        <!-- Entertainment Grid Route -->
-        <a href="https://youtube.com" target="_blank" class="category-tile">
-            <span class="tile-icon">🎭</span>
-            <span class="tile-name">Entertainment</span>
-        </a>
-
-        <!-- Bills Grid Route -->
-        <a href="https://meralco.com.ph" target="_blank" class="category-tile">
-            <span class="tile-icon">💵</span>
-            <span class="tile-name">Bills</span>
-        </a>
-
-        <!-- News Grid Route -->
-        <a href="https://facebook.com" target="_blank" class="category-tile">
-            <span class="tile-icon">📰</span>
-            <span class="tile-name">News</span>
-        </a>
-
-    </div>
-
-    <!-- Legal Framework Disclaimer Context -->
-    <div class="footer-note">
-        Prototype dashboard execution format.<br>
-        Logos and tiles represent baseline navigation targets.
-    </div>
-
-    <script>
-        // Simple client-side simulation logic for earning tracking flow
-        let currentPaws = 0;
-        
-        function triggerAdVideo() {
-            alert('Loading Video Advertisement Integration Sample...');
-            setTimeout(() => {
-                currentPaws += 50;
-                document.querySelector('.currency-badge').innerText = `🐟 ${currentPaws} paws`;
-                alert('Congratulations! You earned +50 paws!');
-            }, 800);
-        }
-    </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>WhiskerPaws - One-Stop Android Linker & Category Hub</title>
+    <meta name="description" content="WhiskerPaws is the all-in-one category linker: fast food (Jollibee, McDonald's), AI tools, sports, and entertainment with AdMob monetization." />
+    <meta property="og:title" content="WhiskerPaws - One-Stop Android Linker & Category Hub" />
+    <meta property="og:description" content="WhiskerPaws is the all-in-one category linker: fast food (Jollibee, McDonald's), AI tools, sports, and entertainment with AdMob monetization." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Android & PWA Meta -->
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="WhiskerPaws" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
+
