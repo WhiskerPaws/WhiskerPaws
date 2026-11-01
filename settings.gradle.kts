@@ -6,12 +6,12 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PRESERVE_ON_USE) // 👈 Fixed version syntax!
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
     }
 }
 
-rootProject.name = "WhiskerPaws"
+rootProject.name = "MoneyPaws"
 include(":app")
