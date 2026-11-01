@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PRESERVE_FILES_ON_ROUTINE) // 👈 Bypasses the strict library lock
+    repositoriesMode.set(RepositoriesMode.PRESERVE_ON_USE) // 👈 Fixed version syntax!
     repositories {
         google()
         mavenCentral()
