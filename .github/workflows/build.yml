@@ -17,12 +17,15 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: gradle
+
+    # 🚀 NEW: This forces the cloud server to generate its own official Gradle tools, bypassing your local folders entirely!
+    - name: Force Generate Pristine Gradle Tools In Cloud
+      run: gradle wrapper --gradle-version 8.7
 
     - name: Grant Execute Permission for Gradle Wrapper
       run: chmod +x gradlew
 
-    - name: Compile Debug APK with Cloud Runner
+    - name: Compile MoneyPaws Hub Debug APK
       run: ./gradlew assembleDebug --no-daemon
 
     - name: Upload Compiled APK Artifact
