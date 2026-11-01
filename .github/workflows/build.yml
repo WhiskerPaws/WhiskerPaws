@@ -24,9 +24,13 @@ jobs:
     - name: Grant Execute Permission for Gradle Wrapper
       run: chmod +x gradlew
 
-    # 🚀 CHANGED: This tells the compiler to run with precise error tracking, showing us exactly what's broken
+    - name: Clean build cache to maximize cloud runtime memory
+      run: ./gradlew clean --no-daemon
+
     - name: Compile WhiskerPaws Hub Debug APK
-      run: ./gradlew assembleDebug --no-daemon --stacktrace --info
+      run: ./gradlew assembleDebug --no-daemon --stacktrace
+      env:
+        GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx2048m -Dorg.gradle.workers.max=1"
 
     - name: Upload Compiled APK Artifact
       uses: actions/upload-artifact@v4
