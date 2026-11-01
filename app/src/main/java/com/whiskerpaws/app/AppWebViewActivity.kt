@@ -1,10 +1,14 @@
 package com.whiskerpaws.app
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -14,6 +18,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 class AppWebViewActivity : AppCompatActivity() {
     private lateinit var webView: WebView
     private var mInterstitialAd: InterstitialAd? = null
+    private var currentUrl: String = ""
+    private var currentTitle: String = ""
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,33 +28,47 @@ class AppWebViewActivity : AppCompatActivity() {
         webView = WebView(this)
         setContentView(webView)
 
-        val settings: WebSettings = webView.settings
-        settings.javaScriptEnabled = true
-        settings.domStorageEnabled = true
-        settings.loadWithOverviewMode = true
-        settings.useWideViewPort = true
+        webView.settings.javaScriptEnabled = true
+        webView.settings.domStorageEnabled = true
+        webView.settings.loadWithOverviewMode = true
+        webView.settings.useWideViewPort = true
 
         webView.webViewClient = WebViewClient()
 
-        val targetUrl = intent.getStringExtra("TARGET_URL") ?: "https://google.com"
-        val pageTitle = intent.getStringExtra("PAGE_TITLE") ?: "Portal View"
+        currentUrl = intent.getStringExtra("TARGET_URL") ?: "https://google.com"
+        currentTitle = intent.getStringExtra("PAGE_TITLE") ?: "Portal View"
         
-        supportActionBar?.title = pageTitle
-        webView.loadUrl(targetUrl)
+        supportActionBar?.title = currentTitle
+        webView.loadUrl(currentUrl)
 
-        // Load your Unit 3 Interstitial Gate in the background during the user session
         loadInterstitialAd()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val item = menu?.add(Menu.NONE, 99, Menu.NONE, "Save to Profile")
+        item?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+        item?.setIcon(android.R.drawable.btn_star_big_on)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == 99) {
+            val urlToSave = webView.url ?: currentUrl
+            val prefs = getSharedPreferences("SavedPortalsPrefs", Context.MODE_PRIVATE)
+            prefs.edit().putString(currentTitle, urlToSave).apply()
+            Toast.makeText(this, "📌 Pinned '$currentTitle' to your Dashboard Profile!", Toast.LENGTH_SHORT).show()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun loadInterstitialAd() {
         val adRequest = AdRequest.Builder().build()
-        // Official Google Test Interstitial ID
         InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     mInterstitialAd = null
                 }
-
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     mInterstitialAd = interstitialAd
                 }
@@ -59,7 +79,6 @@ class AppWebViewActivity : AppCompatActivity() {
         if (webView.canGoBack()) {
             webView.goBack()
         } else {
-            // Natural Session Gate: If the ad loaded during the session, show it right when leaving
             if (mInterstitialAd != null) {
                 mInterstitialAd?.show(this)
             }
