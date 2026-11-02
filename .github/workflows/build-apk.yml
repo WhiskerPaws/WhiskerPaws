@@ -1,0 +1,61 @@
+name: Build WhiskerPaws APK
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository Source
+        uses: actions/checkout@v4
+
+      - name: Initialize NodeJS Execution Layer
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Java JDK Environment (LTS 17)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: Install Application Dependency Packages
+        run: |
+          if [ -f package.json ]; then
+            npm install
+          else
+            npm init -y
+            npm install @capacitor/core @capacitor/cli
+            npm install @capacitor/android
+          fi
+
+      - name: Initialize Native Android Scaffold Blueprint
+        run: |
+          npx cap init WhiskerPaws com.whiskerpaws.app --web-dir=.
+          npx cap add android
+
+      - name: Copy Web Application Code Into Native Assets
+        run: npx cap sync android
+
+      - name: Inject Secure Google AdMob Core App ID Configuration
+        run: |
+          # Safe fallback to standard template if target config parameter file is missing
+          if [ -f app-config.json ]; then
+            APPID=$(node -p "require('./app-config.json').admobAppId")
+          else
+            APPID="ca-app-pub-3940256099942544~3347511713"
+          fi
+          sed -i "s#</application>#<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"${APPID}\"/></application>#" android/app/src/main/AndroidManifest.xml
+
+      - name: Execute Android Studio Debug Gradle Compilation
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Archive and Export Compiled Testing Package Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: WhiskerPaws-Testing-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
