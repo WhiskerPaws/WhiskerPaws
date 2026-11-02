@@ -22,16 +22,16 @@ jobs:
 
       - name: Install Application Dependency Packages
         run: |
-          if [ -f package.json ]; then
-            npm install --legacy-peer-deps
-          else
+          if [ ! -f package.json ]; then
             npm init -y
-            npm install @capacitor/core @capacitor/cli @capacitor/android --legacy-peer-deps
           fi
+          # Force clear the engine path parameters and install binaries explicitly
+          npm install @capacitor/core@5 @capacitor/cli@5 @capacitor/android@5 --legacy-peer-deps
 
       - name: Initialize Native Android Scaffold Blueprint
         run: |
-          npx cap init WhiskerPaws com.whiskerpaws.app --web-dir=.
+          # Use local package runner paths to avoid executable search issues
+          npx cap init WhiskerPaws com.whiskerpaws.app --web-dir=. --confirm
           npx cap add android
 
       - name: Copy Web Application Code Into Native Assets
