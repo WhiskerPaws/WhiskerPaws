@@ -1,0 +1,6 @@
+{
+  "name": "OmniLink - All-in-One Android Linker",
+  "description": "The ultimate Android app linker and universal web directory covering AI tools, sports, food & restaurants, entertainment, shopping, dev tools, and custom bookmarks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
