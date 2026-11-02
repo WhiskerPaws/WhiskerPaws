@@ -40,7 +40,6 @@ jobs:
 
       - name: Inject Secure Google AdMob Core App ID Configuration
         run: |
-          # Safe fallback to standard template if target config parameter file is missing
           if [ -f app-config.json ]; then
             APPID=$(node -p "require('./app-config.json').admobAppId")
           else
