@@ -23,11 +23,10 @@ jobs:
       - name: Install Application Dependency Packages
         run: |
           if [ -f package.json ]; then
-            npm install
+            npm install --legacy-peer-deps
           else
             npm init -y
-            npm install @capacitor/core @capacitor/cli
-            npm install @capacitor/android
+            npm install @capacitor/core @capacitor/cli @capacitor/android --legacy-peer-deps
           fi
 
       - name: Initialize Native Android Scaffold Blueprint
