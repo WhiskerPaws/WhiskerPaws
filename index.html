@@ -78,6 +78,178 @@
             </div>
         </div>
 
+<!-- Interactive Minigames Module Wrapper -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+    
+    <!-- Passive Mining Chest Module Layout -->
+    <div class="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm flex flex-col justify-between space-y-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+                <div class="w-10 h-10 bg-amber-50 text-amber-500 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-box-open text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm tracking-tight">Mining Chest</h4>
+                    <p class="text-[11px] text-slate-400">Grows passively over time</p>
+                </div>
+            </div>
+            <span id="chest-rate" class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">+0.1/sec</span>
+        </div>
+
+        <!-- Progress Tracking Matrix bar -->
+        <div class="space-y-1">
+            <div class="flex justify-between text-xs font-semibold text-slate-500">
+                <span>Accumulating...</span>
+                <span id="chest-pending-display">0.00 paws</span>
+            </div>
+            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                <div id="chest-progress" class="bg-gradient-to-r from-amber-400 to-amber-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+
+        <button id="claim-chest-btn" disabled class="w-full bg-slate-100 text-slate-400 font-bold text-xs py-2.5 rounded-xl transition-all duration-150 flex items-center justify-center space-x-1.5 cursor-not-allowed">
+            <i class="fa-solid fa-gift"></i>
+            <span>Claim Chest (Min 1.0)</span>
+        </button>
+    </div>
+
+    <!-- Capped Lucky Spin Wheel Module Layout -->
+    <div class="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm flex flex-col justify-between space-y-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+                <div class="w-10 h-10 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-circle-notch text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-800 text-sm tracking-tight">Lucky Spin Wheel</h4>
+                    <p class="text-[11px] text-slate-400">Regulated economic lottery</p>
+                </div>
+            </div>
+            <span id="spin-limit-badge" class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">5 left today</span>
+        </div>
+
+        <!-- Simplified Visual Simulation Display Row -->
+        <div class="h-12 bg-slate-50 rounded-2xl flex items-center justify-center border border-dashed border-slate-200 relative overflow-hidden">
+            <div id="wheel-status-text" class="text-xs font-extrabold text-slate-500 tracking-wide uppercase">Ready To Spin</div>
+        </div>
+
+        <button id="trigger-spin-btn" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs py-2.5 rounded-xl transition-all duration-150 shadow-md shadow-rose-500/10 flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-dice"></i>
+            <span>Spin Wheel</span>
+        </button>
+    </div>
+
+</section>
+        <!-- Inserted Minigames Addon -->
+        <div id="minigames-container"></div>
+        <!-- Minigames & Mining Dashboard Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- 1. Passive Mining Chest Component -->
+            <div class="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm flex flex-col justify-between space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="p-2.5 bg-amber-50 text-amber-600 rounded-xl">
+                            <i class="fa-solid fa-box-open text-lg animate-bounce"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Paw Mining Chest</h4>
+                            <p class="text-xs text-slate-400">Generates paws passively</p>
+                        </div>
+                    </div>
+                    <span id="mining-status" class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full uppercase tracking-wider">Mining</span>
+                </div>
+                
+                <div class="bg-slate-50 rounded-2xl p-4 text-center border border-slate-100/50">
+                    <span id="mined-counter" class="text-2xl font-extrabold text-slate-800 tracking-tight">0.000</span>
+                    <span class="text-xs font-bold text-amber-600 ml-1">paws</span>
+                </div>
+
+                <button id="claim-mining-btn" disabled class="w-full bg-slate-100 text-slate-400 font-bold text-xs py-3 rounded-xl transition-all duration-150 active:scale-98">
+                    Claim Mined Paws (Min. 1.00)
+                </button>
+            </div>
+
+            <!-- 2. Spin the Wheel Component -->
+            <div class="bg-white border border-slate-100 rounded-3xl p-5 shadow-sm flex flex-col justify-between space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="p-2.5 bg-rose-50 text-rose-600 rounded-xl">
+                            <i class="fa-solid fa-wheelcase text-lg fa-spin-slow"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Lucky Wheel</h4>
+                            <p class="text-xs text-slate-400">Max 5 standard spins daily</p>
+                        </div>
+                    </div>
+                    <span id="spin-count-display" class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full uppercase tracking-wider">5 / 5 Spins Left</span>
+                </div>
+
+                <!-- Simple visual layout for the interactive indicator -->
+                <div class="relative w-full h-24 bg-gradient-to-r from-rose-500 to-amber-500 rounded-2xl flex items-center justify-center text-white overflow-hidden shadow-inner border border-rose-100">
+                    <div id="wheel-status-text" class="font-extrabold text-sm tracking-wide uppercase text-center drop-shadow-sm px-4">
+                        Test your luck today!
+                    </div>
+                </div>
+
+                <button id="spin-wheel-btn" class="w-full bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs py-3 rounded-xl shadow-md shadow-rose-500/10 transition-all duration-150 active:scale-98">
+                    Spin Wheel (-1 Allocation)
+                </button>
+            </div>
+        </section>
+
+        <!-- Inserted Wallet Addon -->
+        <div id="wallet-container"></div>
+        <!-- ONE Wallet System Cashout Section -->
+        <section class="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-50 pb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="p-2.5 bg-blue-50 text-blue-600 rounded-xl">
+                        <i class="fa-solid fa-wallet text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm tracking-tight">ONE Wallet Redemptions</h4>
+                        <p class="text-xs text-slate-400">1,000 paws = $1.00 USD (≈ ₱58.00 PHP)</p>
+                    </div>
+                </div>
+                <span class="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Secure Express Payout</span>
+            </div>
+
+            <!-- Local Payment Channels Selector -->
+            <div class="space-y-2">
+                <label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Select Payout Channel</label>
+                <div class="grid grid-cols-3 gap-3">
+                    <button class="payment-method-btn border-2 border-blue-500 bg-blue-50/50 p-3.5 rounded-2xl flex flex-col items-center justify-center text-center transition-all duration-150 active:scale-98" data-method="GCash">
+                        <span class="font-black text-blue-700 text-sm tracking-wide">GCash</span>
+                    </button>
+                    <button class="payment-method-btn border border-slate-100 hover:border-slate-200 bg-slate-50/50 p-3.5 rounded-2xl flex flex-col items-center justify-center text-center transition-all duration-150 active:scale-98" data-method="Maya">
+                        <span class="font-black text-slate-800 text-sm tracking-wide">Maya</span>
+                    </button>
+                    <button class="payment-method-btn border border-slate-100 hover:border-slate-200 bg-slate-50/50 p-3.5 rounded-2xl flex flex-col items-center justify-center text-center transition-all duration-150 active:scale-98" data-method="PayPal">
+                        <span class="font-black text-blue-900 text-sm tracking-wide">PayPal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Specified Cashout Tier Amounts Matrix -->
+            <div class="space-y-2">
+                <label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Select Withdrawal Amount</label>
+                <div class="grid grid-cols-3 gap-2.5">
+                    <button class="cashout-tier-btn border border-slate-200 hover:border-blue-500 hover:bg-blue-50/20 p-3 rounded-xl text-xs font-extrabold text-slate-700 transition-all duration-150 active:scale-95" data-amount="10">₱10</button>
+                    <button class="cashout-tier-btn border border-slate-200 hover:border-blue-500 hover:bg-blue-50/20 p-3 rounded-xl text-xs font-extrabold text-slate-700 transition-all duration-150 active:scale-95" data-amount="20">₱20</button>
+                    <button class="cashout-tier-btn border border-slate-200 hover:border-blue-500 hover:bg-blue-50/20 p-3 rounded-xl text-xs font-extrabold text-slate-700 transition-all duration-150 active:scale-95" data-amount="50">₱50</button>
+                    <button class="cashout-tier-btn border border-slate-200 hover:border-blue-500 hover:bg-blue-50/20 p-3 rounded-xl text-xs font-extrabold text-slate-700 transition-all duration-150 active:scale-95" data-amount="100">₱100</button>
+                    <button class="cashout-tier-btn border border-slate-200 hover:border-blue-500 hover:bg-blue-50/20 p-3 rounded-xl text-xs font-extrabold text-slate-700 transition-all duration-150 active:scale-95" data-amount="500">₱500</button>
+                    <button class="cashout-tier-btn border border-slate-200 hover:border-blue-500 hover:bg-blue-50/20 p-3 rounded-xl text-xs font-extrabold text-slate-700 transition-all duration-150 active:scale-95" data-amount="1000">₱1,000</button>
+                </div>
+            </div>
+
+            <!-- Execute Settlement Button -->
+            <button id="withdraw-action-btn" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-4 rounded-xl shadow-md transition-all duration-150 active:scale-98">
+                Request Withdrawal Settlement
+            </button>
+        </section>
+
         <!-- Categories Navigation Section -->
         <section class="space-y-4">
             <h3 class="text-xs font-bold text-slate-400 tracking-widest uppercase">All Categories</h3>
@@ -125,6 +297,7 @@
         <p class="text-[10px] text-slate-400 font-medium tracking-wide">Prototype dashboard execution format. Icons and tiles represent unified system targets.</p>
     </footer>
 
+<script src="https://jsdelivr.net"></script>
 <script src="app.js"></script>
 </body>
 </html>
