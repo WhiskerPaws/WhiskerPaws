@@ -2,212 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>WhiskerPaws Hub</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        body {
-            background-color: #f7fafc;
-            color: #1a202c;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        /* App Header Container */
-        .app-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-            padding-top: 4px;
-        }
-        .logo-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: #2d3748;
-            letter-spacing: -0.5px;
-        }
-        .currency-badge {
-            background-color: #edf2f7;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 15px;
-            font-weight: 700;
-            color: #4a5568;
-            border: 1px solid #e2e8f0;
-        }
-        .subtitle {
-            font-size: 14px;
-            color: #718096;
-            margin-bottom: 20px;
-        }
-        /* Video Reward Action Module */
-        .reward-card {
-            background: linear-gradient(135deg, #ffffff 0%, #fcfdfd 100%);
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 18px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
-        }
-        .reward-card p {
-            font-size: 14px;
-            color: #4a5568;
-            line-height: 1.4;
-        }
-        .reward-btn {
-            display: inline-block;
-            background-color: #3182ce;
-            color: white;
-            text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            margin-top: 12px;
-            text-align: center;
-            transition: background-color 0.2s;
-        }
-        .reward-btn:active {
-            background-color: #2b6cb0;
-        }
-        /* Top Ad Placement Frame */
-        .ad-banner {
-            background-color: #edf2f7;
-            border: 1px dashed #cbd5e0;
-            color: #718096;
-            text-align: center;
-            padding: 14px 10px;
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 10px;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        /* Dashboard Categories Header */
-        .section-label {
-            font-size: 16px;
-            font-weight: 800;
-            color: #2d3748;
-            margin-bottom: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        /* Perfectly Grid Architecture */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-        .category-tile {
-            background-color: #ffffff;
-            border-radius: 14px;
-            padding: 24px 16px;
-            text-align: center;
-            text-decoration: none;
-            color: #2d3748;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03), 0 2px 4px -1px rgba(0,0,0,0.02);
-            border: 1px solid #edf2f7;
-            transition: transform 0.15s ease, background-color 0.15s ease;
-        }
-        /* Native App Touch Feedback Feel */
-        .category-tile:active {
-            transform: scale(0.96);
-            background-color: #f7fafc;
-        }
-        .tile-icon {
-            font-size: 36px;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .tile-name {
-            font-weight: 700;
-            font-size: 15px;
-            display: block;
-        }
-        /* Clean Fixed Footer Label */
-        .footer-note {
-            text-align: center;
-            font-size: 11px;
-            color: #a0aec0;
-            margin-top: auto;
-            padding-top: 24px;
-            line-height: 1.4;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Main Live App Bar Header -->
-    <header class="app-header">
-        <div class="logo-title">🐾 Whisker Paws</div>
-        <div class="currency-badge">🐟 0 paws</div>
-    </header>
-
-    <div class="subtitle">Everything you use, one tap away.</div>
-
-    <!-- Incentivized Video Component Container -->
-    <div class="reward-card">
-        <p><strong>Watch a short video</strong><br>Earn 50 paws, redeem for rewards & vouchers.</p>
-        <a href="#" class="reward-btn" onclick="triggerAdVideo(); return false;">▶ Watch Video</a>
-    </div>
-
-    <!-- Top Native Ad Placeholder Frame -->
-    <div class="ad-banner">
-        AdMob banner sits here on the home screen
-    </div>
-
-    <!-- Categorized Touch Grid Layout Links -->
-    <div class="section-label">All Categories</div>
-    <div class="categories-grid">
-        
-        <!-- Entertainment Grid Route -->
-        <a href="https://youtube.com" target="_blank" class="category-tile">
-            <span class="tile-icon">🎭</span>
-            <span class="tile-name">Entertainment</span>
-        </a>
-
-        <!-- Bills Grid Route -->
-        <a href="https://meralco.com.ph" target="_blank" class="category-tile">
-            <span class="tile-icon">💵</span>
-            <span class="tile-name">Bills</span>
-        </a>
-
-        <!-- News Grid Route -->
-        <a href="https://facebook.com" target="_blank" class="category-tile">
-            <span class="tile-icon">📰</span>
-            <span class="tile-name">News</span>
-        </a>
-
-    </div>
-
-    <!-- Legal Framework Disclaimer Context -->
-    <div class="footer-note">
-        Prototype dashboard execution format.<br>
-        Logos and tiles represent baseline navigation targets.
-    </div>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhiskerPaws Dashboard</title>
+    <script src="https://tailwindcss.com"></script>
     <script>
-        // Simple client-side simulation logic for earning tracking flow
-        let currentPaws = 0;
-        
-        function triggerAdVideo() {
-            alert('Loading Video Advertisement Integration Sample...');
-            setTimeout(() => {
-                currentPaws += 50;
-                document.querySelector('.currency-badge').innerText = `🐟 ${currentPaws} paws`;
-                alert('Congratulations! You earned +50 paws!');
-            }, 800);
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
         }
     </script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body class="bg-slate-50 font-sans min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm transition-all duration-200">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brand-500 text-white p-2.5 rounded-xl shadow-md shadow-blue-500/20">
+                    <i class="fa-solid fa-cat text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-brand-900">Whisker Paws</h1>
+                    <p class="text-xs text-slate-400">Everything you use, one tap away.</p>
+                </div>
+            </div>
+            
+            <!-- Balance Indicator -->
+            <div class="bg-brand-50 border border-brand-100 px-4 py-2 rounded-2xl flex items-center space-x-2 shadow-inner">
+                <i class="fa-solid fa-paw text-brand-500 animate-pulse"></i>
+                <span class="font-extrabold text-brand-900 text-sm tracking-wide">0 paws</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area Container -->
+    <main class="max-w-4xl mx-auto w-full px-4 py-6 flex-grow space-y-6">
+
+        <!-- Hero Section Card -->
+        <section class="bg-gradient-to-br from-brand-900 via-slate-900 to-slate-800 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden group">
+            <div class="absolute -right-8 -bottom-8 opacity-10 text-9xl transform rotate-12 transition-transform duration-500 group-hover:rotate-45">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            
+            <div class="relative z-10 max-w-md space-y-4">
+                <span class="bg-brand-500/20 text-brand-100 text-xs font-semibold px-3 py-1 rounded-full border border-brand-500/30 backdrop-blur-sm">
+                    Daily Bonus Available
+                </span>
+                <div class="space-y-1">
+                    <h2 class="text-2xl font-bold tracking-tight">Watch a short video</h2>
+                    <p class="text-sm text-slate-300 leading-relaxed">Earn 50 paws instantly, redeemable for your next rewards & lifestyle vouchers.</p>
+                </div>
+                <button class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-lg shadow-blue-500/20 flex items-center space-x-2 transition-all duration-150">
+                    <i class="fa-solid fa-circle-play text-base"></i>
+                    <span>Watch Video</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Inline Content Banner Space -->
+        <div class="w-full flex justify-center py-2">
+            <div class="w-full max-w-[728px] min-h-[90px] bg-slate-100 border border-dashed border-slate-200 rounded-2xl flex items-center justify-center p-4">
+                <span class="text-xs font-medium tracking-widest text-slate-400 uppercase">AdMob Banner Space</span>
+            </div>
+        </div>
+
+        <!-- Categories Navigation Section -->
+        <section class="space-y-4">
+            <h3 class="text-xs font-bold text-slate-400 tracking-widest uppercase">All Categories</h3>
+            
+            <div class="grid grid-cols-2 gap-4">
+                
+                <!-- Entertainment Category Card Component -->
+                <button class="bg-white border border-slate-100 p-5 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 shadow-sm hover:shadow-md hover:border-brand-100 hover:-translate-y-0.5 active:scale-98 transition-all duration-200 group">
+                    <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center shadow-inner group-hover:bg-amber-500 group-hover:text-white transition-all duration-200">
+                        <i class="fa-solid fa-clapperboard text-2xl"></i>
+                    </div>
+                    <span class="font-bold text-slate-700 text-sm tracking-tight">Entertainment</span>
+                </button>
+
+                <!-- Bills Category Card Component -->
+                <button class="bg-white border border-slate-100 p-5 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 shadow-sm hover:shadow-md hover:border-brand-100 hover:-translate-y-0.5 active:scale-98 transition-all duration-200 group">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-500 rounded-2xl flex items-center justify-center shadow-inner group-hover:bg-emerald-500 group-hover:text-white transition-all duration-200">
+                        <i class="fa-solid fa-wallet text-2xl"></i>
+                    </div>
+                    <span class="font-bold text-slate-700 text-sm tracking-tight">Bills</span>
+                </button>
+
+                <!-- News Category Card Component -->
+                <button class="bg-white border border-slate-100 p-5 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 shadow-sm hover:shadow-md hover:border-brand-100 hover:-translate-y-0.5 active:scale-98 transition-all duration-200 group">
+                    <div class="w-14 h-14 bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center shadow-inner group-hover:bg-indigo-500 group-hover:text-white transition-all duration-200">
+                        <i class="fa-solid fa-newspaper text-2xl"></i>
+                    </div>
+                    <span class="font-bold text-slate-700 text-sm tracking-tight">News</span>
+                </button>
+
+                <!-- Rewards / Streak Feature Expansion Slot Component -->
+                <button class="bg-white border border-slate-100 p-5 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 shadow-sm hover:shadow-md hover:border-brand-100 hover:-translate-y-0.5 active:scale-98 transition-all duration-200 group">
+                    <div class="w-14 h-14 bg-rose-50 text-rose-500 rounded-2xl flex items-center justify-center shadow-inner group-hover:bg-rose-500 group-hover:text-white transition-all duration-200">
+                        <i class="fa-solid fa-fire text-2xl"></i>
+                    </div>
+                    <span class="font-bold text-slate-700 text-sm tracking-tight">Daily Streak</span>
+                </button>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- App Bottom Sticky Legal Baseline Context Tracker -->
+    <footer class="bg-white border-t border-slate-100 py-3 text-center">
+        <p class="text-[10px] text-slate-400 font-medium tracking-wide">Prototype dashboard execution format. Icons and tiles represent unified system targets.</p>
+    </footer>
+
 </body>
 </html>
