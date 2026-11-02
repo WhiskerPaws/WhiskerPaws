@@ -5,35 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Whisker Paws</title>
 <style>
-body{background:#f3f4f6;font-family:sans-serif;padding:20px;display:flex;justify-content:center;min-height:100vh;}
-.box{width:100%;max-width:420px;background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 6px rgba(0,0,0,0.05);display:flex;flex-direction:column;gap:16px;}
-.card{border:1px solid #e5e7eb;padding:14px;border-radius:10px;display:flex;flex-direction:column;gap:8px;}
-.title{text-align:center;background:#fffbeb;padding:16px;border-radius:12px;color:#78350f;border:1px solid #fef3c7;}
-#bal{font-size:24px;font-weight:bold;color:#d97706;}
-.nav-tabs{display:flex;gap:10px;border-bottom:2px solid #e5e7eb;padding-bottom:10px;}
-.tab-btn{flex:1;padding:8px;background:#f3f4f6;color:#4b5563;border:none;border-radius:6px;font-weight:bold;cursor:pointer;}
-.tab-btn.active{background:#f59e0b;color:#fff;}
-button{width:100%;padding:12px;background:#f59e0b;color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;font-size:14px;}
-button:disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed;}
-.btn-spin{background:#10b981;}
-.row{display:flex;justify-content:space-between;padding:6px 8px;background:#f9fafb;border-radius:6px;font-size:13px;font-weight:600;}
-.shop-item{border:1px solid #e5e7eb;padding:12px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;background:#fff;}
-.shop-btn{width:auto;padding:6px 12px;font-size:12px;background:#10b981;}
-.hidden{display:none !important;}
-.badge-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
-.badge-item{border:1px solid #e5e7eb;padding:10px;border-radius:8px;display:flex;align-items:center;gap:8px;background:#f9fafb;transition:all 0.2s;}
-.badge-item.unlocked{background:#ecfdf5;border-color:#a7f3d0;}
-.badge-icon{font-size:22px;filter:grayscale(100%);opacity:0.4;}
-.badge-item.unlocked .badge-icon{filter:grayscale(0%);opacity:1;}
-.badge-info h4{font-size:12px;color:#374151;margin:0;}
-.badge-info p{font-size:10px;color:#6b7280;margin:2px 0 0 0;}
-.calendar-grid{display:grid;grid-template-columns:repeat(7, 1fr);gap:6px;margin-top:6px;}
-.day-node{border:1px solid #e5e7eb;background:#f9fafb;border-radius:8px;padding:8px 4px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:bold;color:#4b5563;}
-.day-node.claimed{background:#d1fae5;border-color:#34d399;color:#065f46;}
-.day-node.active-today{border:2px solid #f59e0b;background:#fffbeb;color:#78350f;}
-.day-reward{font-size:9px;color:#9ca3af;}
-.day-node.claimed .day-reward{color:#059669;}
-.streak-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;}
+body { background: #0f172a; color: #f8fafc; font-family: sans-serif; padding: 20px; display: flex; justify-content: center; min-height: 100vh; padding-bottom: 80px; }
+.box { width: 100%; max-width: 420px; background: #1e293b; padding: 20px; border-radius: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; flex-direction: column; gap: 16px; }
+.card { border: 1px solid #334155; padding: 14px; border-radius: 10px; background: #1e293b; display: flex; flex-direction: column; gap: 8px; }
+.title { text-align: center; background: linear-gradient(135deg, #1e3a8a, #3b82f6); padding: 16px; border-radius: 12px; color: #fff; border: 1px solid #3b82f6; }
+#bal { font-size: 26px; font-weight: bold; color: #60a5fa; }
+.nav-tabs { display: flex; gap: 10px; border-bottom: 2px solid #334155; padding-bottom: 10px; }
+.tab-btn { flex: 1; padding: 8px; background: #334155; color: #94a3b8; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+.tab-btn.active { background: #3b82f6; color: #fff; }
+button { width: 100%; padding: 12px; background: #3b82f6; color: #fff; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; }
+button:disabled { background: #475569 !important; color: #94a3b8 !important; cursor: not-allowed !important; }
+.btn-spin { background: #10b981; }
+.row { display: flex; justify-content: space-between; padding: 6px 8px; background: #334155; border-radius: 6px; font-size: 13px; font-weight: 600; color: #cbd5e1; }
+.shop-item { border: 1px solid #334155; padding: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; background: #1e293b; }
+.shop-btn { width: auto; padding: 6px 12px; font-size: 12px; background: #10b981; }
+.hidden { display: none !important; }
+.badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.badge-item { border: 1px solid #334155; padding: 10px; border-radius: 8px; display: flex; align-items: center; gap: 8px; background: #1e293b; }
+.badge-item.unlocked { background: #064e3b; border-color: #059669; }
+.badge-icon { font-size: 22px; filter: grayscale(100%); opacity: 0.4; }
+.badge-item.unlocked .badge-icon { filter: grayscale(0%); opacity: 1; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.day-node { border: 1px solid #334155; background: #1e293b; border-radius: 8px; padding: 8px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: bold; color: #94a3b8; }
+.day-node.claimed { background: #064e3b; border-color: #059669; color: #a7f3d0; }
+.day-node.active-today { border: 2px solid #3b82f6; background: #1e3a8a; color: #fff; }
+.day-reward { font-size: 9px; color: #64748b; }
+.day-node.claimed .day-reward { color: #34d399; }
+.banner-anchor { background: #334155; border: 1px dashed #475569; text-align: center; padding: 12px; border-radius: 8px; font-size: 11px; font-family: monospace; color: #94a3b8; text-transform: uppercase; margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -42,319 +40,167 @@ button:disabled{background:#e5e7eb;color:#9ca3af;cursor:not-allowed;}
 <h2>Whisker Paws</h2>
 <p style="margin-top:6px;">Balance: <span id="bal">0.00</span> paws</p>
 </div>
-
-<!-- Navigation Tabs -->
 <div class="nav-tabs">
 <button id="tab-game" class="tab-btn active">Earn Dashboard</button>
 <button id="tab-shop" class="tab-btn">Voucher Shop</button>
 </div>
-
-<!-- GAME VIEW CONTAINER -->
 <div id="view-game" class="view-content" style="display:flex; flex-direction:column; gap:16px;">
-
-<!-- Attendance Tracker Module -->
 <div class="card">
-<div class="streak-header">
 <h3>Daily Attendance</h3>
-<span id="streak-count" style="font-size:12px;font-weight:bold;color:#d97706;background:#fffbeb;padding:2px 8px;border-radius:20px;border:1px solid #fde68a;">Streak: 0 Days</span>
-</div>
-<p style="font-size:11px;color:#6b7280;">Log in consecutive calendar days to scale your rewards matrix up to +100 paws!</p>
 <div class="calendar-grid" id="calendar-wrapper"></div>
-<button id="btn-checkin" style="margin-top:6px;height:38px;padding:0;font-size:13px;" class="btn-spin">Claim Today's Bonus</button>
+<button id="btn-checkin" style="margin-top:6px;" class="btn-spin">Claim Today's Bonus</button>
 </div>
-
-<!-- Watch Video Card -->
 <div class="card">
 <h3>Watch Video</h3>
-<p style="font-size:12px;color:#6b7280;">Earn 50 paws instantly.</p>
+<p style="font-size:12px;color:#94a3b8;">Watch a quick rewarded ad and claim +50 paws instantly!</p>
 <button id="btn-video">Watch Video</button>
 </div>
-
-<!-- Mining Chest Card -->
 <div class="card">
-<div class="badge-row"><h2>Mining Chest</h2><span class="rate-badge">+0.1/sec</span></div>
-<p style="font-size:13px;color:#374151;">Accumulated: <b><span id="chest">0.00</span> paws</b></p>
+<h3>Mining Chest (+0.1/s)</h3>
+<p style="font-size:13px;color:#cbd5e1;">Accumulated: <b><span id="chest">0.00</span> paws</b></p>
 <button id="btn-claim" disabled>Claim Chest (Min 1.0)</button>
 </div>
-
-<!-- Lucky Spin Wheel Card with Overnight Engine Anchor -->
 <div class="card">
-<div class="badge-row">
 <h3>Lucky Spin Wheel</h3>
-<span id="spins">5</span> spins left today.
-</div>
-<div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#6b7280;">
-<span>Daily Limit: 5 Max</span>
-<span id="spin-engine-log" style="color:#059669;font-weight:bold;">⚙️ Engine Active</span>
-</div>
+<p style="font-size:12px;color:#94a3b8;"><span id="spins">5</span> spins left today.</p>
 <button id="btn-spin" class="btn-spin">Spin Wheel</button>
 </div>
-
+<div class="banner-anchor" id="web-banner-anchor">AdMob Bottom Banner Active</div>
 <div class="card">
 <h3>Global Leaderboard</h3>
 <div id="lead" style="display:flex;flex-direction:column;gap:6px;"></div>
 </div>
-
 <div class="card">
-<h3>Achievements & Medals</h3>
-<p style="font-size:11px;color:#6b7280;">Complete core milestones to unlock your profile flair badges.</p>
+<h3>Achievements</h3>
 <div class="badge-grid">
-<div id="ach-first" class="badge-item"><span class="badge-icon">🥉</span><div class="badge-info"><h4>First Steps</h4><p>Reach 50 paws balance</p></div></div>
-<div id="ach-collector" class="badge-item"><span class="badge-icon">🥈</span><div class="badge-info"><h4>Paw Collector</h4><p>Reach 250 paws balance</p></div></div>
-<div id="ach-spinner" class="badge-item"><span class="badge-icon">🎰</span><div class="badge-info"><h4>Wheel Spinner</h4><p>Use your first lucky spin</p></div></div>
-<div id="ach-shopper" class="badge-item"><span class="badge-icon">👑</span><div class="badge-info"><h4>Voucher Master</h4><p>Redeem any shop reward</p></div></div>
+<div id="ach-first" class="badge-item"><span class="badge-icon">🥉</span><div style="font-size:11px;"><h4>First Steps</h4><p style="color:#94a3b8;">50 paws</p></div></div>
+<div id="ach-collector" class="badge-item"><span class="badge-icon">🥈</span><div style="font-size:11px;"><h4>Collector</h4><p style="color:#94a3b8;">250 paws</p></div></div>
+<div id="ach-spinner" class="badge-item"><span class="badge-icon">🎰</span><div style="font-size:11px;"><h4>Spinner</h4><p style="color:#94a3b8;">Use 1 Spin</p></div></div>
+<div id="ach-shopper" class="badge-item"><span class="badge-icon">👑</span><div style="font-size:11px;"><h4>Master</h4><p style="color:#94a3b8;">Shop Redeem</p></div></div>
 </div>
 </div>
 </div>
-
-<!-- SHOP VIEW CONTAINER -->
 <div id="view-shop" class="view-content hidden" style="display:flex; flex-direction:column; gap:16px;">
 <div class="card">
-<h3>Lifestyle Vouchers</h3>
-<p style="font-size:12px;color:#6b7280;margin-bottom:8px;">Exchange your paws for real lifestyle rewards!</p>
+<h3>Voucher Rewards</h3>
 <div style="display:flex; flex-direction:column; gap:10px;">
-<div class="shop-item">
-<div><h4 style="font-size:14px;color:#1f2937;">$5 Starbucks Gift Card</h4><p style="font-size:11px;color:#9ca3af;">Cost: 500 paws</p></div>
-<button class="shop-btn" onclick="buyVoucher('Starbucks Card', 500)">Redeem</button>
-</div>
-<div class="shop-item">
-<div><h4 style="font-size:14px;color:#1f2937;">$10 Amazon Voucher</h4><p style="font-size:11px;color:#9ca3af;">Cost: 1,000 paws</p></div>
-<button class="shop-btn" onclick="buyVoucher('Amazon Voucher', 1000)">Redeem</button>
-</div>
-<div class="shop-item">
-<div><h4 style="font-size:14px;color:#1f2937;">1 Month Spotify Premium</h4><p style="font-size:11px;color:#9ca3af;">Cost: 1,500 paws</p></div>
-<button class="shop-btn" onclick="buyVoucher('Spotify Premium', 1500)">Redeem</button>
-</div>
+<div class="shop-item"><div><h4>Starbucks $5</h4><p style="font-size:11px;color:#94a3b8;">500 paws</p></div><button class="shop-btn" onclick="buyVoucher('Starbucks Card',500)">Redeem</button></div>
+<div class="shop-item"><div><h4>Amazon $10</h4><p style="font-size:11px;color:#94a3b8;">1000 paws</p></div><button class="shop-btn" onclick="buyVoucher('Amazon Voucher',1000)">Redeem</button></div>
 </div>
 </div>
 <div class="card">
 <h3>Your Inventory</h3>
-<div id="inventory-list" style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#4b5563;">
-<p style="color:#9ca3af;font-style:italic;text-align:center;">No vouchers claimed yet.</p>
+<div id="inventory-list" style="display:flex;flex-direction:column;gap:6px;font-size:12px;"></div>
 </div>
 </div>
-</div>
-
-<button id="btn-reset" style="background:#fee2e2;color:#ef4444;font-size:12px;padding:8px;">Reset Progress</button>
+<button id="btn-reset" style="background:#451a03;color:#f87171;font-size:12px;padding:8px;">Reset Data</button>
 </div>
 <script>
 let buyVoucher;
-
 document.addEventListener('DOMContentLoaded',function(){
     var bal=parseFloat(localStorage.getItem('wp_b'))||0;
     var ch=parseFloat(localStorage.getItem('wp_c'))||0;
     var sp=localStorage.getItem('wp_s')!==null?parseInt(localStorage.getItem('wp_s')):5;
-    var inventory = JSON.parse(localStorage.getItem('wp_inv')) || [];
-    var achSpinner = localStorage.getItem('wp_ach_spin') === 'true';
-    var achShopper = localStorage.getItem('wp_ach_shop') === 'true';
-    var streak = parseInt(localStorage.getItem('wp_streak')) || 0;
-    var lastCheckInDate = localStorage.getItem('wp_lastCheckInDate') || "";
+    var inventory=JSON.parse(localStorage.getItem('wp_inv'))||[];
+    var achSpinner=localStorage.getItem('wp_ach_spin')==='true';
+    var achShopper=localStorage.getItem('wp_ach_shop')==='true';
+    var streak=parseInt(localStorage.getItem('wp_streak'))||0;
+    var lastCheckInDate=localStorage.getItem('wp_lastCheckInDate')||"";
+    var lastSpinResetDate=localStorage.getItem('wp_lastSpinResetDate')||"";
 
-    // NEW: Tracking storage keys for midnight spin updates
-    var lastSpinResetDate = localStorage.getItem('wp_lastSpinResetDate') || "";
-
-    var bBal=document.getElementById('bal');
-    var bCh=document.getElementById('chest');
-    var bSp=document.getElementById('spins');
-    var btnV=document.getElementById('btn-video');
-    var btnC=document.getElementById('btn-claim');
-    var btnS=document.getElementById('btn-spin');
-    var dLead=document.getElementById('lead');
-    var btnR=document.getElementById('btn-reset');
-    
-    var tabGame=document.getElementById('tab-game');
-    var tabShop=document.getElementById('tab-shop');
-    var viewGame=document.getElementById('view-game');
-    var viewShop=document.getElementById('view-shop');
-    var invList=document.getElementById('inventory-list');
-    var badgeFirst=document.getElementById('ach-first');
-    var badgeCollector=document.getElementById('ach-collector');
-    var badgeSpinner=document.getElementById('ach-spinner');
-    var badgeShopper=document.getElementById('ach-shopper');
-    var calWrapper=document.getElementById('calendar-wrapper');
-    var btnCheckIn=document.getElementById('btn-checkin');
-    var txtStreak=document.getElementById('streak-count');
-
-    // Indicator engine text element
-    var engineLog=document.getElementById('spin-engine-log');
+    var bBal=document.getElementById('bal'), bCh=document.getElementById('chest'), bSp=document.getElementById('spins');
+    var btnV=document.getElementById('btn-video'), btnC=document.getElementById('btn-claim'), btnS=document.getElementById('btn-spin');
+    var dLead=document.getElementById('lead'), btnR=document.getElementById('btn-reset');
+    var tabGame=document.getElementById('tab-game'), tabShop=document.getElementById('tab-shop');
+    var viewGame=document.getElementById('view-game'), viewShop=document.getElementById('view-shop'), invList=document.getElementById('inventory-list');
+    var badgeFirst=document.getElementById('ach-first'), badgeCollector=document.getElementById('ach-collector'), badgeSpinner=document.getElementById('ach-spinner'), badgeShopper=document.getElementById('ach-shopper');
+    var calWrapper=document.getElementById('calendar-wrapper'), btnCheckIn=document.getElementById('btn-checkin');
 
     var streakRewards =;
+    let isAdMobInitialized = false;
+
+    async function initNativeAdMobEngine() {
+        if (window.Capacitor && window.Capacitor.isPluginAvailable('AdMob')) {
+            try {
+                const { AdMob } = window.Capacitor.Plugins;
+                await AdMob.initialize({ initializeForTesting: true });
+                isAdMobInitialized = true;
+                document.getElementById('web-banner-anchor').style.display = 'none';
+                await AdMob.showBanner({
+                    adId: 'ca-app-pub-3940256099942544/6300978111',
+                    position: 'BOTTOM_CENTER',
+                    margin: 0,
+                    isTesting: true
+                });
+            } catch (e) { console.log('AdMob initialization blocked'); }
+        }
+    }
 
     function save(){
-        localStorage.setItem('wp_b',bal);
-        localStorage.setItem('wp_c',ch);
-        localStorage.setItem('wp_s',sp);
-        localStorage.setItem('wp_inv', JSON.stringify(inventory));
-        localStorage.setItem('wp_ach_spin', achSpinner);
-        localStorage.setItem('wp_ach_shop', achShopper);
-        localStorage.setItem('wp_streak', streak);
-        localStorage.setItem('wp_lastCheckInDate', lastCheckInDate);
-        
-        // Save the date context for the last spin reset
-        localStorage.setItem('wp_lastSpinResetDate', lastSpinResetDate);
+        localStorage.setItem('wp_b',bal); localStorage.setItem('wp_c',ch); localStorage.setItem('wp_s',sp);
+        localStorage.setItem('wp_inv',JSON.stringify(inventory)); localStorage.setItem('wp_ach_spin',achSpinner);
+        localStorage.setItem('wp_ach_shop',achShopper); localStorage.setItem('wp_streak',streak);
+        localStorage.setItem('wp_lastCheckInDate',lastCheckInDate); localStorage.setItem('wp_lastSpinResetDate',lastSpinResetDate);
     }
-
-    function getTodayString() {
-        var d = new Date();
-        return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-    }
-
-    // --- OVERNIGHT AUTOMATED RESET LOGIC ENGINE ---
-    function checkOvernightSpinReset() {
-        var todayStr = getTodayString();
-        
-        // Initialize if first boot session setup
-        if (!lastSpinResetDate) {
-            lastSpinResetDate = todayStr;
-            save();
-            return;
+    function getTodayString() { var d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+    function updateUI(){
+        var todayStr=getTodayString();
+        if(lastSpinResetDate!==todayStr){ sp=5; lastSpinResetDate=todayStr; save(); }
+        if(lastCheckInDate!==todayStr && lastCheckInDate!==""){
+            var today=new Date(); today.setHours(0,0,0,0); var last=new Date(lastCheckInDate); last.setHours(0,0,0,0);
+            if(Math.ceil(Math.abs(today-last)/(1000*60*60*24))>1){ streak=0; save(); }
         }
-
-        // Trigger if current system date string breaks past the previous locked string
-        if (lastSpinResetDate !== todayStr) {
-            sp = 5; // Reset allocation back to maximum daily allowance
-            lastSpinResetDate = todayStr;
-            save();
-            
-            engineLog.textContent = "🔄 Spins Reset!";
-            engineLog.style.color = "#10b981";
-            setTimeout(function() {
-                engineLog.textContent = "⚙️ Engine Active";
-                engineLog.style.color = "#059669";
-            }, 5000);
-        }
-    }
-
-    function checkStreakResetNeeded() {
-        if (!lastCheckInDate) return;
-        var today = new Date(); today.setHours(0,0,0,0);
-        var last = new Date(lastCheckInDate); last.setHours(0,0,0,0);
-        var diffTime = Math.abs(today - last);
-        var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        if (diffDays > 1 && lastCheckInDate !== getTodayString()) {
-            streak = 0;
-            save();
-        }
-    }
-
-    function drawCalendarUI() {
-        checkStreakResetNeeded();
-        calWrapper.innerHTML = '';
-        txtStreak.textContent = 'Streak: ' + streak + ' Days';
-        var todayStr = getTodayString();
-        var alreadyClaimedToday = (lastCheckInDate === todayStr);
-        var targetActiveDayIndex = alreadyClaimedToday ? (streak - 1) % 7 : streak % 7;
-
-        for(var i=0; i<7; i++) {
-            var dayDiv = document.createElement('div');
-            dayDiv.className = 'day-node';
-            var dayNum = document.createElement('span'); dayNum.textContent = 'D' + (i + 1);
-            var rewardAmt = document.createElement('span'); rewardAmt.className = 'day-reward'; rewardAmt.textContent = '+' + streakRewards[i];
-            dayDiv.appendChild(dayNum); dayDiv.appendChild(rewardAmt);
-
-            if (alreadyClaimedToday && i <= targetActiveDayIndex) { dayDiv.className += ' claimed'; }
-            else if (!alreadyClaimedToday && i < targetActiveDayIndex) { dayDiv.className += ' claimed'; }
-            else if (!alreadyClaimedToday && i === targetActiveDayIndex) { dayDiv.className += ' active-today'; }
-            calWrapper.appendChild(dayDiv);
-        }
-
-        if(alreadyClaimedToday) {
-            btnCheckIn.disabled = true; btnCheckIn.textContent = 'Attendance Logged Today'; btnCheckIn.style.backgroundColor = '#e5e7eb';
-        } else {
-            btnCheckIn.disabled = false; btnCheckIn.textContent = 'Claim Day ' + (targetActiveDayIndex + 1) + ' Bonus (+' + streakRewards[targetActiveDayIndex] + ' Paws)'; btnCheckIn.style.backgroundColor = '';
-        }
-    }
-
-    btnCheckIn.addEventListener('click', function() {
-        var todayStr = getTodayString();
-        if(lastCheckInDate === todayStr) return;
-        var targetIndex = streak % 7;
-        var bonusAwarded = streakRewards[targetIndex];
-        bal += bonusAwarded; streak++; lastCheckInDate = todayStr;
-        save(); ui();
-        alert('📆 Attendance Recorded! Day ' + (targetIndex + 1) + ' bonus added: +' + bonusAwarded + ' paws.');
-    });
-
-    function checkAchievements() {
-        if (bal >= 50) badgeFirst.classList.add('unlocked');
-        if (bal >= 250) badgeCollector.classList.add('unlocked');
-        if (achSpinner) badgeSpinner.classList.add('unlocked');
-        if (achShopper) badgeShopper.classList.add('unlocked');
-    }
-
-    function updateInventoryUI() {
-        if(inventory.length === 0) {
-            invList.innerHTML = '<p style="color:#9ca3af;font-style:italic;text-align:center;">No vouchers claimed yet.</p>';
-            return;
-        }
-        invList.innerHTML = '';
-        inventory.forEach(function(item) {
-            var div = document.createElement('div');
-            div.className = 'row'; div.style.background = '#f0fdf4'; div.style.color = '#166534'; div.style.border = '1px solid #bbf7d0';
-            div.innerHTML = '<span>🎁 ' + item.name + '</span><span style="font-family:monospace;font-weight:bold;">' + item.code + '</span>';
-            invList.appendChild(div);
-        });
-    }
-
-    function ui(){
-        // Always evaluate rolling calendar dates before updating the UI elements
-        checkOvernightSpinReset();
-
         bBal.textContent=bal.toFixed(2); bCh.textContent=ch.toFixed(2); bSp.textContent=sp;
-        btnC.disabled=(ch<1);
-        if(sp<=0){
-            btnS.disabled=true; btnS.textContent='Out of Spins';
-        } else {
-            btnS.disabled=false; btnS.textContent='Spin Wheel';
+        btnC.disabled=(ch<1); btnS.disabled=(sp<=0); if(sp<=0){btnS.textContent='Out of Spins';}else{btnS.textContent='Spin Wheel';}
+        
+        calWrapper.innerHTML='';
+        var claimedToday=(lastCheckInDate===todayStr); var targetActive=claimedToday?(streak-1)%7:streak%7;
+        for(var i=0;i<7;i++){
+            var node=document.createElement('div'); node.className='day-node';
+            node.innerHTML='<span>D'+(i+1)+'</span><span class="day-reward">+'+streakRewards[i]+'</span>';
+            if((claimedToday&&i<=targetActive)||(!claimedToday&&i<targetActive)){ node.className+=' claimed'; }
+            else if(!claimedToday&&i===targetActive){ node.className+=' active-today'; }
+            calWrapper.appendChild(node);
         }
-        dLead.innerHTML='<div class="row"><span>#1 CryptoWhiskers</span><span>142,500 paws</span></div><div class="row"><span>#2 PawMaster_99</span><span>98,210 paws</span></div><div class="row" style="background:#fffbeb;border:1px solid #fde68a;color:#b45309;"><span>#3 You</span><span>'+bal.toFixed(2)+' paws</span></div>';
-        updateInventoryUI(); drawCalendarUI(); checkAchievements();
+        if(claimedToday){ btnCheckIn.disabled=true; btnCheckIn.textContent='Attendance Logged'; }
+        else { btnCheckIn.disabled=false; btnCheckIn.textContent='Claim Bonus (+'+streakRewards[targetActive]+' Paws)'; }
+
+        if(bal>=50)badgeFirst.classList.add('unlocked'); if(bal>=250)badgeCollector.classList.add('unlocked');
+        if(achSpinner)badgeSpinner.classList.add('unlocked'); if(achShopper)badgeShopper.classList.add('unlocked');
+
+        invList.innerHTML='';
+        if(inventory.length===0){ invList.innerHTML='<p style="color:#94a3b8;text-align:center;">No vouchers claimed.</p>'; }
+        else{ inventory.forEach(function(item){ var d=document.createElement('div'); d.className='row'; d.innerHTML='<span>🎁 '+item.name+'</span><span style="font-family:monospace;">'+item.code+'</span>'; invList.appendChild(d); }); }
+        dLead.innerHTML='<div class="row"><span>#1 CryptoWhiskers</span><span>142,500</span></div><div class="row" style="background:#1e3a8a;border:1px solid #3b82f6;color:#60a5fa;"><span>#2 You</span><span>'+bal.toFixed(2)+'</span></div>';
     }
-
-    tabGame.addEventListener('click', function() {
-        tabGame.classList.add('active'); tabShop.classList.remove('active');
-        viewGame.classList.remove('hidden'); viewShop.classList.add('hidden');
+    tabGame.addEventListener('click',function(){ tabGame.classList.add('active'); tabShop.classList.remove('active'); viewGame.classList.remove('hidden'); viewShop.add('hidden'); });
+    tabShop.addEventListener('click',function(){ tabShop.classList.add('active'); tabGame.classList.remove('active'); viewShop.classList.remove('hidden'); viewGame.classList.add('hidden'); });
+    btnCheckIn.addEventListener('click',function(){ if(lastCheckInDate===getTodayString())return; bal+=streakRewards[streak%7]; streak++; lastCheckInDate=getTodayString(); save(); updateUI(); });
+    btnC.addEventListener('click',function(){ if(ch>=1){ bal+=ch; ch=0; save(); updateUI(); alert('Chest claimed!'); } });
+    
+    btnV.addEventListener('click', async function(){
+        btnV.disabled = true; btnV.textContent = 'Loading Ad...';
+        if (window.Capacitor && window.Capacitor.isPluginAvailable('AdMob')) {
+            try {
+                const { AdMob } = window.Capacitor.Plugins;
+                await AdMob.prepareRewardVideoAd({ adId: 'ca-app-pub-3940256099942544/5224354917', isTesting: true });
+                const rewardResult = await AdMob.showRewardVideoAd();
+                if (rewardResult && rewardResult.amount > 0) { bal += 50.00; }
+            } catch (e) { bal += 50.00; alert('Test Reward Issued'); }
+        } else { bal += 50.00; alert('Browser Simulation: +50 paws'); }
+        btnV.disabled = false; btnV.textContent = 'Watch Video'; save(); updateUI();
     });
 
-    tabShop.addEventListener('click', function() {
-        tabShop.classList.add('active'); tabGame.classList.remove('active');
-        viewShop.classList.remove('hidden'); viewGame.classList.add('hidden');
-    });
-
-    buyVoucher = function(name, cost) {
-        if(bal < cost) { alert('❌ Insufficient balance!'); return; }
-        if(confirm('Redeem ' + cost + ' paws for a ' + name + '?')) {
-            bal -= cost;
-            var generatedCode = 'WP-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-            inventory.push({ name: name, code: generatedCode });
-            achShopper = true;
-            save(); ui();
-        }
+    btnS.addEventListener('click',function(){ if(sp>0){ sp--; bal+=25; achSpinner=true; save(); updateUI(); } });
+    buyVoucher=function(name,cost){
+        if(bal<cost){ alert('Insufficient balance!'); return; }
+        if(confirm('Redeem '+name+'?')){ bal-=cost; inventory.push({name:name,code:'WP-'+Math.random().toString(36).substr(2,9).toUpperCase()}); achShopper=true; save(); updateUI(); }
     };
-
-    setInterval(function(){ch+=0.1;save();ui();},1000);
+    btnR.addEventListener('click',function(){ if(confirm('Reset game data?')){ localStorage.clear(); bal=0; ch=0; sp=5; inventory=[]; achSpinner=false; achShopper=false; streak=0; lastCheckInDate=""; lastSpinResetDate=""; updateUI(); } });
     
-    btnC.addEventListener('click',function(){if(ch>=1){bal+=ch;ch=0;save();ui();alert('Chest claimed!');}});
-    btnV.addEventListener('click',function(){
-        btnV.disabled=true;btnV.textContent='Loading Ad...';
-        setTimeout(function(){bal+=50;btnV.disabled=false;btnV.textContent='Watch Video';save();ui();},1500);
-    });
-    
-    btnS.addEventListener('click',function(){
-        if(sp > 0){
-            sp--; bal+=25; achSpinner = true; save(); ui();
-        }
-    });
-    
-    btnR.addEventListener('click',function(){
-        if(confirm('Reset all data?')){
-            localStorage.clear(); bal=0; ch=0; sp=5; inventory=[]; achSpinner=false; achShopper=false; streak=0; lastCheckInDate=""; lastSpinResetDate="";
-            badgeFirst.classList.remove('unlocked'); badgeCollector.classList.remove('unlocked'); badgeSpinner.classList.remove('unlocked'); badgeShopper.classList.remove('unlocked');
-            save(); ui();
-        }
-    });
-    
-    ui();
+    setInterval(function(){ ch+=0.1; save(); bCh.textContent=ch.toFixed(2); btnC.disabled=(ch<1); },1000);
+    initNativeAdMobEngine();
+    updateUI();
 });
 </script>
 </body>
