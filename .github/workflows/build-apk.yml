@@ -25,7 +25,6 @@ jobs:
           if [ ! -f package.json ]; then
             npm init -y
           fi
-          # Install core packages along with sharp for automated high-end asset imaging resizing
           npm install @capacitor/core@5 @capacitor/cli@5 @capacitor/android@5 sharp --legacy-peer-deps
 
       - name: Initialize Native Android Scaffold Blueprint
@@ -54,8 +53,8 @@ jobs:
 
       - name: Generate and Map Premium Mobile App Icon Assets
         run: |
-          # Use an automated Node script to resize and deploy launcher icons if source image is available
-          cat << 'NODE_EOF' > resize-icons.js
+          # FIXED: Renamed file wrapper template target extension directly to .cjs
+          cat << 'NODE_EOF' > resize-icons.cjs
           const sharp = require('sharp');
           const fs = require('fs');
           const source = 'app-icon-source.png';
@@ -79,7 +78,7 @@ jobs:
             });
           }
           NODE_EOF
-          node resize-icons.js
+          node resize-icons.cjs
 
       - name: Execute Android Studio Debug Gradle Compilation
         run: |
