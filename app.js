@@ -364,3 +364,88 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// === TRANSACTION LOG LEDGER SYSTEM OPERATIONS ===
+document.addEventListener('DOMContentLoaded', () => {
+    const ledgerElements = {
+        stackContainer: document.getElementById('transaction-stack'),
+        emptyView: document.getElementById('empty-ledger-view'),
+        clearBtn: document.getElementById('clear-ledger-btn'),
+        withdrawBtn: document.getElementById('withdraw-action-btn')
+    };
+
+    // Helper logic to dynamically append list items into the visual log markup UI
+    function prependTransactionToLedger(channel, amountPHP, pawsDeducted) {
+        if (ledgerElements.emptyView) {
+            ledgerElements.emptyView.style.display = 'none';
+        }
+
+        const dateStampStr = new Date().toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        const logItemNode = document.createElement('div');
+        logItemNode.className = "flex items-center justify-between p-3 bg-slate-50 border border-slate-100 rounded-xl text-xs transition-all hover:bg-slate-100/50 animate-fadeIn";
+        
+        logItemNode.innerHTML = `
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-white border border-slate-100 flex items-center justify-center font-bold text-[10px] text-slate-500">
+                    ${channel[0]}
+                </div>
+                <div>
+                    <div class="font-bold text-slate-800">₱${amountPHP}.00 via ${channel}</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5">${dateStampStr} • <span class="text-rose-500 font-semibold">-${pawsDeducted} paws</span></div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping"></span>
+                <span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full uppercase tracking-wider">Pending</span>
+            </div>
+        `;
+
+        if (ledgerElements.stackContainer) {
+            ledgerElements.stackContainer.insertBefore(logItemNode, ledgerElements.stackContainer.firstChild);
+        }
+    }
+
+    // Capture standard application withdrawal execution events to log history
+    if (ledgerElements.withdrawBtn) {
+        ledgerElements.withdrawBtn.addEventListener('click', () => {
+            // Find inputs from context variables on the page matrix view
+            const activeMethodBtn = document.querySelector('.payment-method-btn.border-2');
+            const activeTierBtn = document.querySelector('.cashout-tier-btn.border-2');
+            
+            const channelName = activeMethodBtn ? activeMethodBtn.getAttribute('data-method') : 'GCash';
+            const valueAmount = activeTierBtn ? parseInt(activeTierBtn.getAttribute('data-amount'), 10) : null;
+            
+            if (!valueAmount) return; // Validation guard dealt with inside primary engine hooks
+
+            const conversionRate = 17.24;
+            const requiredPawsCost = Math.ceil(valueAmount * conversionRate);
+
+            const uiBalanceText = document.querySelector('header span.font-extrabold')?.textContent || "0";
+            const currentPawsAvailable = parseInt(uiBalanceText, 10) || 0;
+
+            // Only append transaction to UI if withdrawal validation is verified to succeed
+            if (currentPawsAvailable >= requiredPawsCost) {
+                prependTransactionToLedger(channelName, valueAmount, requiredPawsCost);
+            }
+        });
+    }
+
+    // Flush local ledger view logs
+    if (ledgerElements.clearBtn) {
+        ledgerElements.clearBtn.addEventListener('click', () => {
+            if (ledgerElements.stackContainer) {
+                ledgerElements.stackContainer.innerHTML = '';
+                if (ledgerElements.emptyView) {
+                    ledgerElements.emptyView.style.display = 'block';
+                    ledgerElements.stackContainer.appendChild(ledgerElements.emptyView);
+                }
+            }
+        });
+    }
+});
