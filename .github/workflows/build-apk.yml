@@ -29,8 +29,16 @@ jobs:
 
       - name: Initialize Native Android Scaffold Blueprint
         run: |
-          # Fixed: Removed the --confirm flag to resolve the unknown option crash
-          npx cap init WhiskerPaws com.whiskerpaws.app --web-dir=.
+          # Create the configuration manually to bypass the buggy interactive CLI initializer
+          cat << 'INNER_EOF' > capacitor.config.json
+          {
+            "appId": "com.whiskerpaws.app",
+            "appName": "Whisker Paws",
+            "webDir": "."
+          }
+          INNER_EOF
+          
+          # Add the native platform directly
           npx cap add android
 
       - name: Copy Web Application Code Into Native Assets
