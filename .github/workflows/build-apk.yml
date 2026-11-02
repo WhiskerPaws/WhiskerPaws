@@ -25,17 +25,14 @@ jobs:
           if [ ! -f package.json ]; then
             npm init -y
           fi
-          npm install @capacitor/core@5 @capacitor/cli@5 @capacitor/android@5 --legacy-peer-deps
+          # Install core packages along with sharp for automated high-end asset imaging resizing
+          npm install @capacitor/core@5 @capacitor/cli@5 @capacitor/android@5 sharp --legacy-peer-deps
 
       - name: Initialize Native Android Scaffold Blueprint
         run: |
-          # 1. Create a dedicated web build distribution directory folder
           mkdir -p www
-          
-          # 2. Copy the active layout assets directly into the tracking workspace
           cp index.html www/
           
-          # 3. Create the manual JSON file targeting the valid relative folder block
           cat << 'INNER_EOF' > capacitor.config.json
           {
             "appId": "com.whiskerpaws.app",
@@ -44,11 +41,7 @@ jobs:
           }
           INNER_EOF
           
-          # 4. Generate the native gradle project bindings
           npx cap add android
-
-      - name: Copy Web Application Code Into Native Assets
-        run: npx cap sync android
 
       - name: Inject Secure Google AdMob Core App ID Configuration
         run: |
@@ -58,6 +51,35 @@ jobs:
             APPID="ca-app-pub-3940256099942544~3347511713"
           fi
           sed -i "s#</application>#<meta-data android:name=\"com.google.android.gms.ads.APPLICATION_ID\" android:value=\"${APPID}\"/></application>#" android/app/src/main/AndroidManifest.xml
+
+      - name: Generate and Map Premium Mobile App Icon Assets
+        run: |
+          # Use an automated Node script to resize and deploy launcher icons if source image is available
+          cat << 'NODE_EOF' > resize-icons.js
+          const sharp = require('sharp');
+          const fs = require('fs');
+          const source = 'app-icon-source.png';
+          
+          if (fs.existsSync(source)) {
+            const sizes = {
+              'mipmap-mdpi': 48,
+              'mipmap-hdpi': 72,
+              'mipmap-xhdpi': 96,
+              'mipmap-xxhdpi': 144,
+              'mipmap-xxxhdpi': 192
+            };
+            
+            Object.entries(sizes).forEach(([folder, size]) => {
+              const path = `android/app/src/main/res/${folder}`;
+              if (fs.existsSync(path)) {
+                sharp(source).resize(size, size).toFile(`${path}/ic_launcher.png`, (err) => {
+                  if (!err) console.log(`Successfully mapped ${size}x${size} asset to ${folder}`);
+                });
+              }
+            });
+          }
+          NODE_EOF
+          node resize-icons.js
 
       - name: Execute Android Studio Debug Gradle Compilation
         run: |
