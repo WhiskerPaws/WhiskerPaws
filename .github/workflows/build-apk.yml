@@ -25,13 +25,12 @@ jobs:
           if [ ! -f package.json ]; then
             npm init -y
           fi
-          # Force clear the engine path parameters and install binaries explicitly
           npm install @capacitor/core@5 @capacitor/cli@5 @capacitor/android@5 --legacy-peer-deps
 
       - name: Initialize Native Android Scaffold Blueprint
         run: |
-          # Use local package runner paths to avoid executable search issues
-          npx cap init WhiskerPaws com.whiskerpaws.app --web-dir=. --confirm
+          # Fixed: Removed the --confirm flag to resolve the unknown option crash
+          npx cap init WhiskerPaws com.whiskerpaws.app --web-dir=.
           npx cap add android
 
       - name: Copy Web Application Code Into Native Assets
