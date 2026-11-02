@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Whisker Paws</title>
 <style>
-body { background: #0f172a; color: #f8fafc; font-family: sans-serif; padding: 20px; display: flex; justify-content: center; min-height: 100vh; padding-bottom: 80px; }
-.box { width: 100%; max-width: 420px; background: #1e293b; padding: 20px; border-radius: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; flex-direction: column; gap: 16px; }
+body { background: #0f172a; color: #f8fafc; font-family: sans-serif; padding: 20px; display: flex; justify-content: center; min-height: 100vh; padding-bottom: 80px; position: relative; overflow-x: hidden; }
+.box { width: 100%; max-width: 420px; background: #1e293b; padding: 20px; border-radius: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; flex-direction: column; gap: 16px; z-index: 10; position: relative; }
 .card { border: 1px solid #334155; padding: 14px; border-radius: 10px; background: #1e293b; display: flex; flex-direction: column; gap: 8px; }
 .title { text-align: center; background: linear-gradient(135deg, #1e3a8a, #3b82f6); padding: 16px; border-radius: 12px; color: #fff; border: 1px solid #3b82f6; }
 #bal { font-size: 26px; font-weight: bold; color: #60a5fa; }
@@ -32,9 +32,23 @@ button:disabled { background: #475569 !important; color: #94a3b8 !important; cur
 .day-reward { font-size: 9px; color: #64748b; }
 .day-node.claimed .day-reward { color: #34d399; }
 .banner-anchor { background: #334155; border: 1px dashed #475569; text-align: center; padding: 12px; border-radius: 8px; font-size: 11px; font-family: monospace; color: #94a3b8; text-transform: uppercase; margin-top: 10px; }
+
+/* Fixed Fullscreen Particle Canvas Overlay Overlay styles */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Allows user taps to bleed straight through cleanly */
+    z-index: 9999;
+}
 </style>
 </head>
 <body>
+<!-- Particle System Canvas Element Anchor -->
+<canvas id="particle-canvas"></canvas>
+
 <div class="box">
 <div class="title">
 <h2>Whisker Paws</h2>
@@ -119,6 +133,192 @@ document.addEventListener('DOMContentLoaded',function(){
     var streakRewards =;
     let isAdMobInitialized = false;
 
+    // --- CYBERPUNK 2D PHYSICS PARTICLE CANVAS INFRASTRUCTURE ---
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class CyberSpark {
+        constructor(x, y, hueType) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 4 + 2;
+            this.speedX = Math.random() * 6 - 3;
+            this.speedY = Math.random() * -6 - 2; // Explosive upward thrust
+            this.gravity = 0.15;
+            this.alpha = 1;
+            this.decay = Math.random() * 0.02 + 0.015;
+            // Alternates cyan neon blues or warm sparkling laser gold variants
+            this.color = hueType === 'gold' ? 
+                'rgba(245, 158, 11, ' : 'rgba(37, 99, 235, ';
+        }
+        update() {
+            this.speedY += this.gravity;
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.alpha -= this.decay;
+        }
+        draw() {
+            ctx.save();
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color.includes('245') ? '#f59e0b' : '#2563eb';
+            ctx.fillStyle = this.color + this.alpha + ')';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    function sparkExplosion(element, hueType) {
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top + rect.height / 2;
+        
+        for (let i = 0; i < 40; i++) {
+            particlesArray.push(new CyberSpark(originX, originY, hueType));
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+            particlesArray[i].draw();
+            if (particlesArray[i].alpha <= 0) {
+                particlesArray.splice(i, 1);
+                i--;
+            }
+        }
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    async function initNativeAdMobEngine() {
+        if (window.Capacitor && window.Capacitor.isPluginAvailable('AdMob')) {
+            try {
+                const { AdMob } = window.Capacitor.Plugins;
+                await AdMob.initialize({ initializeForTesting: true });
+                isAdMobInitialized = true;
+                document.getElementById('web-banner-anchor').style.display = 'none';
+                await AdMob.showBanner({
+                    adId: 'ca-app-pub-3940256099942544/6300978111',
+                    position: 'BOTTOM_CENTER',
+                    margin: 0,
+                    isTesting: true
+                });
+            } catch (e) { console.log('AdMob initialization blocked'); }
+        }
+    }
+
+    function save(){
+        localStorage.setItem('wp_b',bal); localStorage.setItem('wp_c',ch); localStorage.setItem('wp_s',sp);
+        localStorage.setItem('wp_inv',JSON.stringify(inventory)); localStorage.setItem('wp_ach_spin',achSpinner);
+        localStorage.setItem('wp_ach_shop',achShopper); localStorage.setItem('wp_streak',streak);
+        localStorage.setItem('wp_lastCheckInDate',lastCheckInDate); localStorage.setItem('wp_lastSpinResetDate',lastSpinResetDate);
+    }
+    function getTodayString() { var d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+<script>
+let buyVoucher;
+document.addEventListener('DOMContentLoaded',function(){
+    var bal=parseFloat(localStorage.getItem('wp_b'))||0;
+    var ch=parseFloat(localStorage.getItem('wp_c'))||0;
+    var sp=localStorage.getItem('wp_s')!==null?parseInt(localStorage.getItem('wp_s')):5;
+    var inventory=JSON.parse(localStorage.getItem('wp_inv'))||[];
+    var achSpinner=localStorage.getItem('wp_ach_spin')==='true';
+    var achShopper=localStorage.getItem('wp_ach_shop')==='true';
+    var streak=parseInt(localStorage.getItem('wp_streak'))||0;
+    var lastCheckInDate=localStorage.getItem('wp_lastCheckInDate')||"";
+    var lastSpinResetDate=localStorage.getItem('wp_lastSpinResetDate')||"";
+
+    var bBal=document.getElementById('bal'), bCh=document.getElementById('chest'), bSp=document.getElementById('spins');
+    var btnV=document.getElementById('btn-video'), btnC=document.getElementById('btn-claim'), btnS=document.getElementById('btn-spin');
+    var dLead=document.getElementById('lead'), btnR=document.getElementById('btn-reset');
+    var tabGame=document.getElementById('tab-game'), tabShop=document.getElementById('tab-shop');
+    var viewGame=document.getElementById('view-game'), viewShop=document.getElementById('view-shop'), invList=document.getElementById('inventory-list');
+    var badgeFirst=document.getElementById('ach-first'), badgeCollector=document.getElementById('ach-collector'), badgeSpinner=document.getElementById('ach-spinner'), badgeShopper=document.getElementById('ach-shopper');
+    var calWrapper=document.getElementById('calendar-wrapper'), btnCheckIn=document.getElementById('btn-checkin');
+
+    var streakRewards =;
+    let isAdMobInitialized = false;
+
+    // --- CYBERPUNK 2D PHYSICS PARTICLE CANVAS INFRASTRUCTURE ---
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class CyberSpark {
+        constructor(x, y, hueType) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 4 + 2;
+            this.speedX = Math.random() * 6 - 3;
+            this.speedY = Math.random() * -6 - 2; // Explosive upward thrust
+            this.gravity = 0.15;
+            this.alpha = 1;
+            this.decay = Math.random() * 0.02 + 0.015;
+            // Alternates cyan neon blues or warm sparkling laser gold variants
+            this.color = hueType === 'gold' ? 
+                'rgba(245, 158, 11, ' : 'rgba(37, 99, 235, ';
+        }
+        update() {
+            this.speedY += this.gravity;
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.alpha -= this.decay;
+        }
+        draw() {
+            ctx.save();
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color.includes('245') ? '#f59e0b' : '#2563eb';
+            ctx.fillStyle = this.color + this.alpha + ')';
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    function sparkExplosion(element, hueType) {
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top + rect.height / 2;
+        
+        for (let i = 0; i < 40; i++) {
+            particlesArray.push(new CyberSpark(originX, originY, hueType));
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+            particlesArray[i].draw();
+            if (particlesArray[i].alpha <= 0) {
+                particlesArray.splice(i, 1);
+                i--;
+            }
+        }
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
     async function initNativeAdMobEngine() {
         if (window.Capacitor && window.Capacitor.isPluginAvailable('AdMob')) {
             try {
@@ -173,10 +373,13 @@ document.addEventListener('DOMContentLoaded',function(){
         else{ inventory.forEach(function(item){ var d=document.createElement('div'); d.className='row'; d.innerHTML='<span>🎁 '+item.name+'</span><span style="font-family:monospace;">'+item.code+'</span>'; invList.appendChild(d); }); }
         dLead.innerHTML='<div class="row"><span>#1 CryptoWhiskers</span><span>142,500</span></div><div class="row" style="background:#1e3a8a;border:1px solid #3b82f6;color:#60a5fa;"><span>#2 You</span><span>'+bal.toFixed(2)+'</span></div>';
     }
+
     tabGame.addEventListener('click',function(){ tabGame.classList.add('active'); tabShop.classList.remove('active'); viewGame.classList.remove('hidden'); viewShop.add('hidden'); });
     tabShop.addEventListener('click',function(){ tabShop.classList.add('active'); tabGame.classList.remove('active'); viewShop.classList.remove('hidden'); viewGame.classList.add('hidden'); });
-    btnCheckIn.addEventListener('click',function(){ if(lastCheckInDate===getTodayString())return; bal+=streakRewards[streak%7]; streak++; lastCheckInDate=getTodayString(); save(); updateUI(); });
-    btnC.addEventListener('click',function(){ if(ch>=1){ bal+=ch; ch=0; save(); updateUI(); alert('Chest claimed!'); } });
+    
+    btnCheckIn.addEventListener('click',function(){ if(lastCheckInDate===getTodayString())return; sparkExplosion(btnCheckIn, 'cyan'); bal+=streakRewards[streak%7]; streak++; lastCheckInDate=getTodayString(); save(); updateUI(); });
+    
+    btnC.addEventListener('click',function(){ if(ch>=1){ sparkExplosion(btnC, 'gold'); bal+=ch; ch=0; save(); updateUI(); alert('Chest claimed!'); } });
     
     btnV.addEventListener('click', async function(){
         btnV.disabled = true; btnV.textContent = 'Loading Ad...';
@@ -185,13 +388,14 @@ document.addEventListener('DOMContentLoaded',function(){
                 const { AdMob } = window.Capacitor.Plugins;
                 await AdMob.prepareRewardVideoAd({ adId: 'ca-app-pub-3940256099942544/5224354917', isTesting: true });
                 const rewardResult = await AdMob.showRewardVideoAd();
-                if (rewardResult && rewardResult.amount > 0) { bal += 50.00; }
-            } catch (e) { bal += 50.00; alert('Test Reward Issued'); }
-        } else { bal += 50.00; alert('Browser Simulation: +50 paws'); }
+                if (rewardResult && rewardResult.amount > 0) { bal += 50.00; sparkExplosion(btnV, 'gold'); }
+            } catch (e) { bal += 50.00; sparkExplosion(btnV, 'gold'); alert('Test Reward Issued'); }
+        } else { bal += 50.00; sparkExplosion(btnV, 'gold'); alert('Browser Simulation: +50 paws'); }
         btnV.disabled = false; btnV.textContent = 'Watch Video'; save(); updateUI();
     });
 
-    btnS.addEventListener('click',function(){ if(sp>0){ sp--; bal+=25; achSpinner=true; save(); updateUI(); } });
+    btnS.addEventListener('click',function(){ if(sp>0){ sp--; bal+=25; achSpinner=true; sparkExplosion(btnS, 'cyan'); save(); updateUI(); } });
+    
     buyVoucher=function(name,cost){
         if(bal<cost){ alert('Insufficient balance!'); return; }
         if(confirm('Redeem '+name+'?')){ bal-=cost; inventory.push({name:name,code:'WP-'+Math.random().toString(36).substr(2,9).toUpperCase()}); achShopper=true; save(); updateUI(); }
